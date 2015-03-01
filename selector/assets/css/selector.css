@@ -21,3 +21,8 @@
             line-height: 48px;
             color: #fff;
         }
+
+    .selector-item-empty {
+        padding: 1em;
+        background: #ddd;
+    }
