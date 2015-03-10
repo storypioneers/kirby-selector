@@ -1,0 +1,28 @@
+
+.selector {}
+
+    .selector-item .item-options {
+        background: none;
+    }
+
+    .selector-item.selector-item-selected {
+        background: #8dae28;
+    }
+
+    .selector .item-filetype {
+        background: #000;
+
+    }
+
+        .selector .item-filetype a {
+            display: inline-block;
+            width: 48px;
+            text-align: center;
+            line-height: 48px;
+            color: #fff;
+        }
+
+    .selector-item-empty {
+        padding: 1em;
+        background: #ddd;
+    }
