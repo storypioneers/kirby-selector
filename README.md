@@ -10,6 +10,8 @@ This additional panel field for [Kirby 2](http://getkirby.com) allows you to use
 
 **License**: [GNU GPL v3.0](http://opensource.org/licenses/GPL-3.0)
 
+![Screenshot](https://raw.githubusercontent.com/storypioneers/kirby-selector/master/screenshot.jpg)
+
 ## Installation
 
 ### Copy & Pasting
