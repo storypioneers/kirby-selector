@@ -1,6 +1,6 @@
 # Selector – Kirby Fileselect Field
 
-![Release](https://img.shields.io/github/release/storypioneers/kirby-selector.svg)  ![Issues](https://img.shields.io/github/issues/storypioneers/kirby-selector.svg) ![License](https://img.shields.io/badge/license-GPLv3-blue.svg)
+[![Release](https://img.shields.io/github/release/storypioneers/kirby-selector.svg)](https://github.com/storypioneers/kirby-selector/releases)  [![Issues](https://img.shields.io/github/issues/storypioneers/kirby-selector.svg)](https://github.com/storypioneers/kirby-selector/issues) [![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://raw.githubusercontent.com/storypioneers/kirby-selector/master/LICENSE)
 
 This additional panel field for [Kirby 2](http://getkirby.com) allows you to use an intuitive alternative file selection field in your blueprints.
 
