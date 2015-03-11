@@ -186,7 +186,7 @@ class SelectorField extends BaseField {
     public function files()
     {
         return $this->page()->files()->filter(function($file) {
-            return in_array($file->type(), $this->types);
+            return $this->includeAllFiles() or in_array($file->type(), $this->types);
         });
     }
 
@@ -207,13 +207,25 @@ class SelectorField extends BaseField {
      * Check if a file is present in the current value
      *
      * @since 1.0.0
-     * 
+     *
      * @param  \File $file
      * @return bool
      */
     public function isInValue($file)
     {
         return in_array($file->filename(), $this->value());
+    }
+
+    /**
+     * Check if the types array includes "all"
+     *
+     * @since 1.0.0
+     *
+     * @return bool
+     */
+    public function includeAllFiles()
+    {
+        return in_array('all', $this->types);
     }
 
 }
