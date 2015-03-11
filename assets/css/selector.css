@@ -1,11 +1,7 @@
 
 .selector {}
 
-    .selector-item .item-options {
-        background: none;
-    }
-
-    .selector-item.selector-item-selected {
+    .selector .selector-item.selector-item-selected {
         background: #8dae28;
     }
 
@@ -22,7 +18,41 @@
             color: #fff;
         }
 
-    .selector-item-empty {
+    .selector .selector-item-empty {
         padding: 1em;
         background: #ddd;
     }
+
+    .selector .item-options {
+        background: none;
+    }
+
+        .selector .selector-item-selected .item-options {
+            border-left: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .selector .item-options .icon {
+            padding: 0;
+        }
+
+@media screen and (max-width: 50em) {
+
+    .selector .item-content {
+        border: 0;
+    }
+
+    .selector .item-options {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        border: 0;
+        border-left: 1px solid #efefef;
+    }
+
+        .selector .item-options a {
+            line-height: 4.25em;
+            padding: 0 1.5em;
+        }
+
+}
