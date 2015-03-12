@@ -142,26 +142,6 @@ class SelectorField extends BaseField {
     }
 
     /**
-     * Decode the result data and return as imploded string
-     *
-     * @since 1.0.0
-     *
-     * @return string
-     */
-    public function result()
-    {
-        $json = parent::result();
-        $data = json_decode($json, true);
-
-        /* Check for empty and invalid results */
-        if(empty($json) or !is_array($data))
-            return '';
-
-        /* Implode result */
-        return implode(',', $data);
-    }
-
-    /**
      * Return the current value
      *
      * @since 1.0.0
