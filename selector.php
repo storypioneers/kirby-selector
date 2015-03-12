@@ -169,9 +169,11 @@ class SelectorField extends BaseField {
          * FIX: Create a new reference to $this to overcome the unavailability
          * of $this within closures in PHP < 5.4.0 by passing this new reference
          * with the "use" language construct.
+         *
+         * @since 1.0.1
          */
         $field = &$this;
-        
+
         return $this->page()->files()->filter(function($file) use ($field) {
             return $field->includeAllFiles() or in_array($file->type(), $field->types);
         });
