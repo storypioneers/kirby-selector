@@ -1,5 +1,5 @@
 
-<input class="[ js-selector-storage ]" type="hidden" name="<?= $field->name() ?>" id="<?= $field->name() ?>" value="<?= $field->value() ?>" />
+<input class="[ js-selector-storage ]" type="hidden" name="<?= $field->name() ?>" id="<?= $field->name() ?>" value="<?= implode(',', $field->value()) ?>" />
 
 <div class="input input-with-items">
     <?php if($field->files()->count() > 0): ?>

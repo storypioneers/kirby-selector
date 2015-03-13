@@ -161,8 +161,8 @@ Selector = (function($, $field) {
 
         });
 
-        // Set JSON representation of the result as storage value
-        self.$storage.val(JSON.stringify(files));
+        // Set string representation of the result as storage value
+        self.$storage.val(files.join());
     }
 
     return this.init();

@@ -142,26 +142,6 @@ class SelectorField extends BaseField {
     }
 
     /**
-     * Decode the result data and return as imploded string
-     *
-     * @since 1.0.0
-     *
-     * @return string
-     */
-    public function result()
-    {
-        $json = parent::result();
-        $data = json_decode($json, true);
-
-        /* Check for empty and invalid results */
-        if(empty($json) or !is_array($data))
-            return '';
-
-        /* Implode result */
-        return implode(',', $data);
-    }
-
-    /**
      * Return the current value
      *
      * @since 1.0.0
@@ -189,9 +169,11 @@ class SelectorField extends BaseField {
          * FIX: Create a new reference to $this to overcome the unavailability
          * of $this within closures in PHP < 5.4.0 by passing this new reference
          * with the "use" language construct.
+         *
+         * @since 1.0.1
          */
         $field = &$this;
-        
+
         return $this->page()->files()->filter(function($file) use ($field) {
             return $field->includeAllFiles() or in_array($file->type(), $field->types);
         });
