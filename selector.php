@@ -26,6 +26,22 @@ class SelectorField extends BaseField {
     public $mode;
 
     /**
+     * Sort mode
+     *
+     * @var string
+     * @since 1.1.0
+     */
+    public $sort = 'filename';
+
+    /**
+     * Flip sort order
+     *
+     * @var string
+     * @since 1.1.0
+     */
+    public $flip = false;
+
+    /**
      * Covered file types
      *
      * @var array
@@ -93,6 +109,16 @@ class SelectorField extends BaseField {
             case 'types':
                 if(!is_array($value) or empty($value))
                     $this->types = array('all');
+                break;
+
+            case 'sort':
+                if(!is_string($value) or empty($value))
+                    $this->sort = 'filename';
+                break;
+
+            case 'flip':
+                if(!is_bool($value))
+                    $this->flip = false;
                 break;
         }
     }
@@ -174,8 +200,10 @@ class SelectorField extends BaseField {
          */
         $field = &$this;
 
-        return $this->page()->files()->filter(function($file) use ($field) {
-            return $field->includeAllFiles() or in_array($file->type(), $field->types);
+        return $this->page()->files()
+            ->sortBy($this->sort, ($this->flip) ? 'desc' : 'asc')
+            ->filter(function($file) use ($field) {
+                return $field->includeAllFiles() or in_array($file->type(), $field->types);
         });
     }
 

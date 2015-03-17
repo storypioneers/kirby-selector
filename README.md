@@ -93,3 +93,22 @@ fields:
 			- audio
 			- document
 ```
+
+### sort
+
+Files will be shown sorted by their filename in ascending order (a-z). However, this option let's you change the default sort behavior. You can sort files by filesize, dimensions, type and many more. Some of the countless possible values are `sort`, `filename`, `size`, `width`, `height`, `type`, `modified`, `ratio`. You can also sort by any of your custom [file fields](http://getkirby.com/docs/panel/blueprints/file-settings#file-fields). The value `sort` will make sure the files are presented in the exact order you specified in the panels file section via [drag and drop](http://getkirby.com/docs/panel/blueprints/file-settings#sortable-files).
+
+```
+fields:
+	featured:
+		label: Featured Image
+		type:  selector
+		mode:  single
+		sort:  size
+		types:
+			- image
+```
+
+### flip
+
+This options allows you to reverse the sort order you specified with the `sort` option. You may set this to `true` or `false`.
