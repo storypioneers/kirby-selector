@@ -67,8 +67,12 @@ Selector = (function($, $field) {
             Unselect all items and reselect only the curent one.
          */
         if(self.mode == 'single') {
-            self.setUnselectedStates();
-            self.setSelectedState($target);
+            if($target.data('checked') == 'true') {
+                self.setUnselectedStates();
+            } else {
+                self.setUnselectedStates();
+                self.setSelectedState($target);
+            }
         }
 
         /*
