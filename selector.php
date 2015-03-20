@@ -2,6 +2,8 @@
 
 class SelectorField extends BaseField {
 
+    const LANG_DIR = 'languages';
+
     /**
      * Define frontend assets
      *
@@ -82,6 +84,32 @@ class SelectorField extends BaseField {
             'unknown',
         ),
     );
+
+    /**
+     * Field setup
+     *
+     * (1) Load language files
+     *
+     * @since 1.2.0
+     *
+     * @return \SelectorField
+     */
+    public function __construct()
+    {
+        /*
+            (1) Load language files
+         */
+        $baseDir = __DIR__ . DS . self::LANG_DIR . DS;
+        $lang    = panel()->language();
+        if(file_exists($baseDir . $lang . '.php'))
+        {
+            require $baseDir . $lang . '.php';
+        }
+        else
+        {
+            require $baseDir . 'en.php';
+        }
+    }
 
     /**
      * Magic setter
