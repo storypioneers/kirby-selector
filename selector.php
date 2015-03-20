@@ -162,6 +162,7 @@ class SelectorField extends BaseField {
             'name'  => $this->name(),
             'page'  => $this->page(),
             'mode'  => $this->mode,
+            'filter' => $this->filter(),
         ));
         $wrapper->html(tpl::load(__DIR__ . DS . 'template.php', array('field' => $this)));
         return $wrapper;
