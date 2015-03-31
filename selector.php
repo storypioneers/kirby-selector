@@ -52,6 +52,14 @@ class SelectorField extends BaseField {
     public $types;
 
     /**
+     * Autoselect a file
+     *
+     * @var string
+     * @since 1.2.0
+     */
+    public $autoselect = 'none';
+
+    /**
      * Option default values
      *
      * @var array
@@ -82,6 +90,11 @@ class SelectorField extends BaseField {
             'archive',
             'code',
             'unknown',
+        ),
+        'autoselect' => array(
+            'none',
+            'first',
+            'last',
         ),
     );
 
@@ -148,6 +161,11 @@ class SelectorField extends BaseField {
                 if(!is_bool($value))
                     $this->flip = false;
                 break;
+
+            case 'autoselect':
+                if(!in_array($value, $this->validValues['autoselect']))
+                    $this->autoselect = 'none';
+                break;
         }
     }
 
@@ -190,6 +208,7 @@ class SelectorField extends BaseField {
             'name'  => $this->name(),
             'page'  => $this->page(),
             'mode'  => $this->mode,
+            'autoselect' => $this->autoselect(),
         ));
         $wrapper->html(tpl::load(__DIR__ . DS . 'template.php', array('field' => $this)));
         return $wrapper;
