@@ -114,3 +114,19 @@ fields:
 ### flip
 
 This options allows you to reverse the sort order you specified with the `sort` option. You may set this to `true` or `false`.
+
+### autoselect
+
+This options allows you to tell the Selector to auto select the first or last file of the list, if no other file is selected, yet. Possible values are `none` (default), `first` and `last`.
+
+```
+fields:
+	featured:
+		label:      Featured Image
+		type:       selector
+		mode:       single
+		sort:       filename
+		autoselect: first
+		types:
+			- image
+```
