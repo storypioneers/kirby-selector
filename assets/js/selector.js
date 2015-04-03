@@ -88,6 +88,12 @@ Selector = (function($, $field) {
                 self.setSelectedState(self.$items.last());
                 break;
 
+            case 'all':
+                self.$items.each(function() {
+                    self.setSelectedState($(this));
+                });
+                break;
+
         }
         self.updateStorage();
     };
