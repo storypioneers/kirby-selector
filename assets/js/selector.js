@@ -89,9 +89,13 @@ Selector = (function($, $field) {
                 break;
 
             case 'all':
-                self.$items.each(function() {
-                    self.setSelectedState($(this));
-                });
+                if(self.mode == 'multiple') {
+                    self.$items.each(function() {
+                        self.setSelectedState($(this));
+                    });
+                } else {
+                    self.setSelectedState(self.$items.first());
+                }
                 break;
 
         }
