@@ -47,7 +47,7 @@
         <?php endforeach ?>
     <?php else: ?>
         <div class="item selector-item-empty">
-            No matching files yet.
+            <?php echo l::get('selector.empty') ?>
         </div>
     <?php endif ?>
 </div>

@@ -3,10 +3,11 @@ Selector = (function($, $field) {
 
     var self = this;
 
-    this.$field   = $field;
-    this.$storage = $field.find('.js-selector-storage');
-    this.$items   = $field.find('.js-selector-item');
-    this.mode     = $field.data('mode');
+    this.$field     = $field;
+    this.$storage   = $field.find('.js-selector-storage');
+    this.$items     = $field.find('.js-selector-item');
+    this.mode       = $field.data('mode');
+    this.autoselect = $field.data('autoselect');
 
     /**
      * Initialize fileselect field
@@ -28,6 +29,15 @@ Selector = (function($, $field) {
          * @since 1.0.0
          */
         self.$field.find('.js-selector-checkbox').click(self.handleClickEvent);
+
+        /**
+         * Maybe autoselect an item
+         *
+         * @since 1.2.0
+         */
+        if(self.autoselect != 'none') {
+            self.doAutoSelect();
+        }
     };
 
     /**
@@ -48,6 +58,39 @@ Selector = (function($, $field) {
         // Initialize storage element value
         self.updateStorage();
     }
+
+    /**
+     * Maybe auto select an item
+     *
+     * @since 1.2.0
+     */
+    this.doAutoSelect = function() {
+        var selected = false;
+
+        // Abort if any file is selected
+        self.$items.each(function() {
+            if(self.hasSelectedState($(this))) {
+                selected = true;
+            }
+        });
+        if(selected) {
+            return;
+        }
+
+        // Select item according to setting and update storage
+        switch(self.autoselect) {
+
+            case 'first':
+                self.setSelectedState(self.$items.first());
+                break;
+
+            case 'last':
+                self.setSelectedState(self.$items.last());
+                break;
+
+        }
+        self.updateStorage();
+    };
 
     /**
      * Handle the click event for the items checkboxes
@@ -136,12 +179,23 @@ Selector = (function($, $field) {
      * @param $target
      */
     this.toggleSelectedState = function($target) {
-        if($target.data('checked') == 'true') {
+        if(self.hasSelectedState($target)) {
             self.setUnselectedState($target);
         } else {
             self.setSelectedState($target);
         }
-    }
+    };
+
+    /**
+     * Check if an item is selected
+     *
+     * @since 1.2.0
+     *
+     * @param $target
+     */
+    this.hasSelectedState = function($target) {
+        return ($target.data('checked') == 'true');
+    };
 
     /**
      * Update storage input element with current state
