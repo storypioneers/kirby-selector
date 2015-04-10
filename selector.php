@@ -95,6 +95,7 @@ class SelectorField extends BaseField {
             'none',
             'first',
             'last',
+            'all'
         ),
     );
 

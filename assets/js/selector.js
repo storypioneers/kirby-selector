@@ -88,6 +88,16 @@ Selector = (function($, $field) {
                 self.setSelectedState(self.$items.last());
                 break;
 
+            case 'all':
+                if(self.mode == 'multiple') {
+                    self.$items.each(function() {
+                        self.setSelectedState($(this));
+                    });
+                } else {
+                    self.setSelectedState(self.$items.first());
+                }
+                break;
+
         }
         self.updateStorage();
     };

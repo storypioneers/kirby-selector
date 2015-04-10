@@ -117,7 +117,7 @@ This options allows you to reverse the sort order you specified with the `sort` 
 
 ### autoselect
 
-This options allows you to tell the Selector to auto select the first or last file of the list, if no other file is selected, yet. Possible values are `none` (default), `first` and `last`.
+This options allows you to tell the Selector to auto select the first, last or all files of the list, if no other file is selected, yet. Possible values are `none` (default), `first`, `last` and `all`.
 
 ```
 fields:
