@@ -209,6 +209,7 @@ class SelectorField extends BaseField {
             'name'  => $this->name(),
             'page'  => $this->page(),
             'mode'  => $this->mode,
+            'filter' => $this->filter(),
             'autoselect' => $this->autoselect(),
         ));
         $wrapper->html(tpl::load(__DIR__ . DS . 'template.php', array('field' => $this)));

@@ -3,7 +3,8 @@
 
 <div class="input input-with-items">
     <?php if($field->files()->count() > 0): ?>
-        <?php foreach($field->files() as $file): ?>
+        <?php if($field->filter() && $field->filter()!='') $files = $field->files()->filterBy('filename', '*=', $field->filter()); else $files = $field->files(); ?>
+        <?php foreach($files as $file): ?>
             <div id="<?= $field->itemId($file) ?>" class="item item-with-image [ selector-item js-selector-item ]" data-file="<?= $file->filename() ?>" <?= r($field->isInValue($file), 'data-checked="true"') ?> >
                 <div class="item-content">
                     <?php if($file->type() == 'image'): ?>
