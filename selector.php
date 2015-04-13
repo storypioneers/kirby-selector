@@ -25,7 +25,7 @@ class SelectorField extends BaseField {
      * @var string
      * @since 1.0.0
      */
-    public $mode;
+    public $mode = 'single';
 
     /**
      * Sort mode
@@ -49,7 +49,7 @@ class SelectorField extends BaseField {
      * @var array
      * @since 1.0.0
      */
-    public $types;
+    public $types = array('all');
 
     /**
      * Autoselect a file
