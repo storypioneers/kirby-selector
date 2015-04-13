@@ -264,6 +264,35 @@ class SelectorField extends BaseField {
     public function files()
     {
         /**
+         * FIX: When used in site options, we don't have a `$this->page`
+         * property we can use to access the pages files.
+         *
+         * (1) If we have page property, we'll use that to fetch the files.
+         * (2) If we don't have a page property we're on the site options page.
+         *     (2.1) If we're using Kirby 2.1+ we can use the new `site()->files()`
+         *           method to get access to the new global site files to use them.
+         *     (2.2) If we are using a lower version, global site files don't
+         *           exist. We'll return an empty collection object instead.
+         *
+         * @since 1.3.0
+         */
+        if(!is_null($this->page)) /* (1) */
+        {
+            $files = $this->page->files(); /* (1) */
+        }
+        else /* (2) */
+        {
+            if(version_compare(Kirby::version(), '2.1', '>=')) /* (2.1) */
+            {
+                $files = site()->files(); /* (2.1) */
+            }
+            else
+            {
+                return new Collection; /* (2.2) */
+            }
+        }
+
+        /**
          * FIX: Create a new reference to $this to overcome the unavailability
          * of $this within closures in PHP < 5.4.0 by passing this new reference
          * with the "use" language construct.
@@ -272,8 +301,7 @@ class SelectorField extends BaseField {
          */
         $field = &$this;
 
-        $files = $this->page()->files()
-            ->sortBy($this->sort, ($this->flip) ? 'desc' : 'asc')
+        $files = $files->sortBy($this->sort, ($this->flip) ? 'desc' : 'asc')
             ->filter(function($file) use ($field) {
                 return $field->includeAllFiles() or in_array($file->type(), $field->types);
             });
