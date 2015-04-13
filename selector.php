@@ -200,10 +200,21 @@ class SelectorField extends BaseField {
 
         /* Label */
         $label = parent::label();
-        $label->addClass('figure-label');
-        $label->append($action);
 
-        return $label;
+        /**
+         * Fields don't have to have a label assigned.
+         * With this, we deal with missing label information.
+         *
+         * @since 1.3.0
+         */
+        if(!is_null($label))
+        {
+            $label->addClass('figure-label');
+            $label->append($action);
+            return $label;
+        }
+
+        return null;
     }
 
     /**
