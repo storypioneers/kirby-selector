@@ -1,7 +1,25 @@
 <?php
 
+/**
+ * Selector
+ * Kirby Fileselect Field for Kirby 2
+ *
+ * @version   1.3.0
+ * @author    Jonas Döbertin <hello@jd-powered.net>
+ *            for digital storytelling pioneers <digital@storypioneers.com>
+ * @copyright digital storytelling pioneers <digital@storypioneers.com>
+ * @link      https://github.com/storypioneers/kirby-selector
+ * @license   GNU GPL v3.0 <http://opensource.org/licenses/GPL-3.0>
+ */
+
 class SelectorField extends BaseField {
 
+    /**
+     * Base directory for language files
+     *
+     * @var string
+     * @since 1.2.0
+     */
     const LANG_DIR = 'languages';
 
     /**
