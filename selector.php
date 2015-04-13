@@ -60,6 +60,14 @@ class SelectorField extends BaseField {
     public $autoselect = 'none';
 
     /**
+     * Filename filter
+     *
+     * @var bool|string
+     * @since 1.3.0
+     */
+    public $filter = false;
+
+    /**
      * Option default values
      *
      * @var array
@@ -167,6 +175,11 @@ class SelectorField extends BaseField {
                 if(!in_array($value, $this->validValues['autoselect']))
                     $this->autoselect = 'none';
                 break;
+
+            case 'filter':
+                if(!is_string($value) or empty($value))
+                    $this->filter = false;
+                break;
         }
     }
 
@@ -248,11 +261,23 @@ class SelectorField extends BaseField {
          */
         $field = &$this;
 
-        return $this->page()->files()
+        $files = $this->page()->files()
             ->sortBy($this->sort, ($this->flip) ? 'desc' : 'asc')
             ->filter(function($file) use ($field) {
                 return $field->includeAllFiles() or in_array($file->type(), $field->types);
-        });
+            });
+
+        /**
+         * Filter files by filename if a filter has been set.
+         *
+         * @since 1.3.0
+         */
+        if($this->filter)
+        {
+            $files = $files->filterBy('filename', '*=', $this->filter);
+        }
+
+        return $files;
     }
 
     /**
