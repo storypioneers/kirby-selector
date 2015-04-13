@@ -43,7 +43,7 @@ class SelectorField extends BaseField {
      * @var string
      * @since 1.0.0
      */
-    public $mode = 'single';
+    protected $mode = 'single';
 
     /**
      * Sort mode
@@ -51,7 +51,7 @@ class SelectorField extends BaseField {
      * @var string
      * @since 1.1.0
      */
-    public $sort = 'filename';
+    protected $sort = 'filename';
 
     /**
      * Flip sort order
@@ -59,7 +59,7 @@ class SelectorField extends BaseField {
      * @var string
      * @since 1.1.0
      */
-    public $flip = false;
+    protected $flip = false;
 
     /**
      * Covered file types
@@ -67,7 +67,7 @@ class SelectorField extends BaseField {
      * @var array
      * @since 1.0.0
      */
-    public $types = array('all');
+    protected $types = array('all');
 
     /**
      * Autoselect a file
@@ -75,7 +75,7 @@ class SelectorField extends BaseField {
      * @var string
      * @since 1.2.0
      */
-    public $autoselect = 'none';
+    protected $autoselect = 'none';
 
     /**
      * Filename filter
@@ -83,7 +83,7 @@ class SelectorField extends BaseField {
      * @var bool|string
      * @since 1.3.0
      */
-    public $filter = false;
+    protected $filter = false;
 
     /**
      * Option default values
