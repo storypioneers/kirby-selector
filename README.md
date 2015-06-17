@@ -46,6 +46,8 @@ $ git submodule foreach --recursive git pull
 
 ## Usage
 
+### Within your blueprints
+
 As soon as you dropped the field extension into your fields folder you can use it in your blueprints: simply add `selector` fields to your blueprints and set some options (where applicable).
 
 ```
@@ -65,6 +67,42 @@ fields:
 		mode:  multiple
 		types:
 			- all
+```
+
+### Within your templates / controllers / models
+
+As per design, the selector field stores the *filenames* of the selected files, only. If you need access to the files full path or to other properties / functions of the file object, you must convert the filename into a full file object first.
+
+**Single Mode**
+
+When you're using the Selector field in Single Mode, gaining access to the full file object is quite easy. Just replace `yourselectorfield` with the name of your Selector-based field.
+
+```php
+	// Convert the filename to a full file object
+	$filename = $page->yourselectorfield();
+	$file = $page->files()->find($filename);
+
+	// Use the file object
+	echo $file->url();
+```
+
+**Multiple Mode**
+
+In multiple mode, the Selector field stores a comma-separated list of filenames, based on how many files you selected. To convert this list into a fully-featured file collection (just like `$page->files()`), you need a bit more code.
+
+```php
+
+	// Transform the comma-separated list of filenames into a file collection
+	$filenames = $page->yourselectorfield()->split(',');
+	if(count($filenames) < 2) $filenames = array_pad($filenames, 2, '');
+	$files = call_user_func_array(array($page->files(), 'find'), $filenames);
+
+	// Use the file collection
+	foreach($files as $file)
+	{
+		echo $file->url();
+	}
+
 ```
 
 ## Options
@@ -127,6 +165,21 @@ fields:
 		mode:       single
 		sort:       filename
 		autoselect: first
+		types:
+			- image
+```
+
+### filter
+
+This options allows you to set a filename filter. Only files with filenames matching the filter will be shown in the Selector field. You may set this to any string like `background`, `.min.js` or `large`.
+
+```
+fields:
+	featured:
+		label:      Page Background Image
+		type:       selector
+		mode:       single
+		filter:     background
 		types:
 			- image
 ```

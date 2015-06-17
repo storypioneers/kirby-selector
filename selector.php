@@ -1,7 +1,25 @@
 <?php
 
+/**
+ * Selector
+ * Kirby Fileselect Field for Kirby 2
+ *
+ * @version   1.3.0
+ * @author    Jonas Döbertin <hello@jd-powered.net>
+ *            for digital storytelling pioneers <digital@storypioneers.com>
+ * @copyright digital storytelling pioneers <digital@storypioneers.com>
+ * @link      https://github.com/storypioneers/kirby-selector
+ * @license   GNU GPL v3.0 <http://opensource.org/licenses/GPL-3.0>
+ */
+
 class SelectorField extends BaseField {
 
+    /**
+     * Base directory for language files
+     *
+     * @var string
+     * @since 1.2.0
+     */
     const LANG_DIR = 'languages';
 
     /**
@@ -25,7 +43,7 @@ class SelectorField extends BaseField {
      * @var string
      * @since 1.0.0
      */
-    public $mode;
+    protected $mode = 'single';
 
     /**
      * Sort mode
@@ -33,7 +51,7 @@ class SelectorField extends BaseField {
      * @var string
      * @since 1.1.0
      */
-    public $sort = 'filename';
+    protected $sort = 'filename';
 
     /**
      * Flip sort order
@@ -41,7 +59,7 @@ class SelectorField extends BaseField {
      * @var string
      * @since 1.1.0
      */
-    public $flip = false;
+    protected $flip = false;
 
     /**
      * Covered file types
@@ -49,7 +67,7 @@ class SelectorField extends BaseField {
      * @var array
      * @since 1.0.0
      */
-    public $types;
+    protected $types = array('all');
 
     /**
      * Autoselect a file
@@ -57,7 +75,15 @@ class SelectorField extends BaseField {
      * @var string
      * @since 1.2.0
      */
-    public $autoselect = 'none';
+    protected $autoselect = 'none';
+
+    /**
+     * Filename filter
+     *
+     * @var bool|string
+     * @since 1.3.0
+     */
+    protected $filter = false;
 
     /**
      * Option default values
@@ -167,6 +193,11 @@ class SelectorField extends BaseField {
                 if(!in_array($value, $this->validValues['autoselect']))
                     $this->autoselect = 'none';
                 break;
+
+            case 'filter':
+                if(!is_string($value) or empty($value))
+                    $this->filter = false;
+                break;
         }
     }
 
@@ -187,10 +218,21 @@ class SelectorField extends BaseField {
 
         /* Label */
         $label = parent::label();
-        $label->addClass('figure-label');
-        $label->append($action);
 
-        return $label;
+        /**
+         * Fields don't have to have a label assigned.
+         * With this, we deal with missing label information.
+         *
+         * @since 1.3.0
+         */
+        if(!is_null($label))
+        {
+            $label->addClass('figure-label');
+            $label->append($action);
+            return $label;
+        }
+
+        return null;
     }
 
     /**
@@ -240,6 +282,35 @@ class SelectorField extends BaseField {
     public function files()
     {
         /**
+         * FIX: When used in site options, we don't have a `$this->page`
+         * property we can use to access the pages files.
+         *
+         * (1) If we have page property, we'll use that to fetch the files.
+         * (2) If we don't have a page property we're on the site options page.
+         *     (2.1) If we're using Kirby 2.1+ we can use the new `site()->files()`
+         *           method to get access to the new global site files to use them.
+         *     (2.2) If we are using a lower version, global site files don't
+         *           exist. We'll return an empty collection object instead.
+         *
+         * @since 1.3.0
+         */
+        if(!is_null($this->page)) /* (1) */
+        {
+            $files = $this->page->files(); /* (1) */
+        }
+        else /* (2) */
+        {
+            if(version_compare(Kirby::version(), '2.1', '>=')) /* (2.1) */
+            {
+                $files = site()->files(); /* (2.1) */
+            }
+            else
+            {
+                return new Collection; /* (2.2) */
+            }
+        }
+
+        /**
          * FIX: Create a new reference to $this to overcome the unavailability
          * of $this within closures in PHP < 5.4.0 by passing this new reference
          * with the "use" language construct.
@@ -248,11 +319,22 @@ class SelectorField extends BaseField {
          */
         $field = &$this;
 
-        return $this->page()->files()
-            ->sortBy($this->sort, ($this->flip) ? 'desc' : 'asc')
+        $files = $files->sortBy($this->sort, ($this->flip) ? 'desc' : 'asc')
             ->filter(function($file) use ($field) {
                 return $field->includeAllFiles() or in_array($file->type(), $field->types);
-        });
+            });
+
+        /**
+         * Filter files by filename if a filter has been set.
+         *
+         * @since 1.3.0
+         */
+        if($this->filter)
+        {
+            $files = $files->filterBy('filename', '*=', $this->filter);
+        }
+
+        return $files;
     }
 
     /**
