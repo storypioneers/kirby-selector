@@ -171,7 +171,7 @@ fields:
 
 ### filter
 
-This options allows you to set a filename filter. Only files with filenames matching the filter will be shown in the Selector field. You may set this to any string like `background`, `.min.js` or `large`.
+This options allows you to set a filename filter. This can be either a simple string or a fully featured regular expression. Only files with filenames matching the filter string or regular expression will be shown in the Selector field. You may set this to any string like `background`, `.min.js` or `large` or a regular expression like `/\.((png)|(jpe?g))/i`.
 
 ```
 fields:
@@ -183,3 +183,14 @@ fields:
 		types:
 			- image
 ```
+Showing only image files with the term *background* in their filename.
+
+```
+fields:
+	featured:
+		label:      Page Background Image
+		type:       selector
+		mode:       single
+		filter:     /\.((png)|(jpe?g))/i
+```
+Using a regular expression to show only *.jpg*, *.jpeg* and *.png* files.

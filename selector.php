@@ -325,11 +325,22 @@ class SelectorField extends BaseField {
             });
 
         /**
+         * Filter files using a regular expression.
+         *
+         * @since 1.4.0
+         */
+        if($this->isRegExp($this->filter)) {
+            $files = $files->filter(function($file) use ($field) {
+                return (preg_match($this->filter, $file->filename()) === 1);
+            });
+        }
+
+        /**
          * Filter files by filename if a filter has been set.
          *
          * @since 1.3.0
          */
-        if($this->filter)
+        elseif($this->filter)
         {
             $files = $files->filterBy('filename', '*=', $this->filter);
         }
@@ -375,4 +386,16 @@ class SelectorField extends BaseField {
         return in_array('all', $this->types);
     }
 
+    /**
+     * Check if a string is a valid regular expression.
+     *
+     * @since  1.4.0
+     *
+     * @param  string $string
+     * @return boolean
+     */
+    public function isRegExp($string)
+    {
+        return !(@preg_match($string, null) === false);
+    }
 }
