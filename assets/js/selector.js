@@ -74,13 +74,13 @@ Selector = (function($, $field) {
         // Apply the selected state to all preselected items
         self.$items.each(function() {
             $item = $(this);
-            if($item.data('checked') == true)
+            if($item.data('checked') === true)
                 self.setSelectedState($item);
         });
 
         // Initialize storage element value
         self.updateStorage();
-    }
+    };
 
     /**
      * Maybe auto select an item
@@ -161,7 +161,7 @@ Selector = (function($, $field) {
 
         // Update storage element
         self.updateStorage();
-    }
+    };
 
     /**
      * Set all items into the unselected state
@@ -254,7 +254,7 @@ Selector = (function($, $field) {
 
         // Set string representation of the result as storage value
         self.$storage.val(files.join());
-    }
+    };
 
     return this.init();
 
