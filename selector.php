@@ -4,7 +4,7 @@
  * Selector
  * Kirby Fileselect Field for Kirby 2
  *
- * @version   1.3.0
+ * @version   1.4.0
  * @author    Jonas Döbertin <hello@jd-powered.net>
  *            for digital storytelling pioneers <digital@storypioneers.com>
  * @copyright digital storytelling pioneers <digital@storypioneers.com>
