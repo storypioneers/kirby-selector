@@ -12,8 +12,8 @@
  * @license   GNU GPL v3.0 <http://opensource.org/licenses/GPL-3.0>
  */
 
-class SelectorField extends BaseField {
-
+class SelectorField extends BaseField
+{
     /**
      * Base directory for language files
      *
@@ -121,7 +121,7 @@ class SelectorField extends BaseField {
             'none',
             'first',
             'last',
-            'all'
+            'all',
         ),
     );
 
@@ -141,12 +141,9 @@ class SelectorField extends BaseField {
          */
         $baseDir = __DIR__ . DS . self::LANG_DIR . DS;
         $lang    = panel()->language();
-        if(file_exists($baseDir . $lang . '.php'))
-        {
+        if (file_exists($baseDir . $lang . '.php')) {
             require $baseDir . $lang . '.php';
-        }
-        else
-        {
+        } else {
             require $baseDir . 'en.php';
         }
     }
@@ -167,36 +164,41 @@ class SelectorField extends BaseField {
         $this->$option = $value;
 
         /* Check if value is valid */
-        switch($option)
-        {
+        switch ($option) {
             case 'mode':
-                if(!in_array($value, $this->validValues['mode']))
+                if (!in_array($value, $this->validValues['mode'])) {
                     $this->mode = $this->defaultValues['mode'];
+                }
                 break;
 
             case 'types':
-                if(!is_array($value) or empty($value))
+                if (!is_array($value) or empty($value)) {
                     $this->types = array('all');
+                }
                 break;
 
             case 'sort':
-                if(!is_string($value) or empty($value))
+                if (!is_string($value) or empty($value)) {
                     $this->sort = 'filename';
+                }
                 break;
 
             case 'flip':
-                if(!is_bool($value))
+                if (!is_bool($value)) {
                     $this->flip = false;
+                }
                 break;
 
             case 'autoselect':
-                if(!in_array($value, $this->validValues['autoselect']))
+                if (!in_array($value, $this->validValues['autoselect'])) {
                     $this->autoselect = 'none';
+                }
                 break;
 
             case 'filter':
-                if(!is_string($value) or empty($value))
+                if (!is_string($value) or empty($value)) {
                     $this->filter = false;
+                }
                 break;
         }
     }
@@ -225,14 +227,14 @@ class SelectorField extends BaseField {
          *
          * @since 1.3.0
          */
-        if(!is_null($label))
-        {
+        if (!is_null($label)) {
             $label->addClass('figure-label');
             $label->append($action);
+
             return $label;
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -247,13 +249,14 @@ class SelectorField extends BaseField {
         $wrapper = new Brick('div');
         $wrapper->addClass('selector');
         $wrapper->data(array(
-            'field' => 'selector',
-            'name'  => $this->name(),
-            'page'  => $this->page(),
-            'mode'  => $this->mode,
+            'field'      => 'selector',
+            'name'       => $this->name(),
+            'page'       => $this->page(),
+            'mode'       => $this->mode,
             'autoselect' => $this->autoselect(),
         ));
         $wrapper->html(tpl::load(__DIR__ . DS . 'template.php', array('field' => $this)));
+
         return $wrapper;
     }
 
@@ -266,8 +269,9 @@ class SelectorField extends BaseField {
      */
     public function value()
     {
-        if(is_string($this->value))
+        if (is_string($this->value)) {
             $this->value = str::split($this->value, ',', 1);
+        }
 
         return $this->value;
     }
@@ -294,19 +298,13 @@ class SelectorField extends BaseField {
          *
          * @since 1.3.0
          */
-        if(!is_null($this->page)) /* (1) */
-        {
+        if (!is_null($this->page)) {/* (1) */
             $files = $this->page->files(); /* (1) */
-        }
-        else /* (2) */
-        {
-            if(version_compare(Kirby::version(), '2.1', '>=')) /* (2.1) */
-            {
+        } else {/* (2) */
+            if (version_compare(Kirby::version(), '2.1', '>=')) {/* (2.1) */
                 $files = site()->files(); /* (2.1) */
-            }
-            else
-            {
-                return new Collection; /* (2.2) */
+            } else {
+                return new Collection(); /* (2.2) */
             }
         }
 
@@ -320,7 +318,7 @@ class SelectorField extends BaseField {
         $field = &$this;
 
         $files = $files->sortBy($this->sort, ($this->flip) ? 'desc' : 'asc')
-            ->filter(function($file) use ($field) {
+            ->filter(function ($file) use ($field) {
                 return $field->includeAllFiles() or in_array($file->type(), $field->types);
             });
 
@@ -329,8 +327,8 @@ class SelectorField extends BaseField {
          *
          * @since 1.4.0
          */
-        if($this->isRegExp($this->filter)) {
-            $files = $files->filter(function($file) use ($field) {
+        if ($this->isRegExp($this->filter)) {
+            $files = $files->filter(function ($file) use ($field) {
                 return (preg_match($this->filter, $file->filename()) === 1);
             });
         }
@@ -340,8 +338,7 @@ class SelectorField extends BaseField {
          *
          * @since 1.3.0
          */
-        elseif($this->filter)
-        {
+        elseif ($this->filter) {
             $files = $files->filterBy('filename', '*=', $this->filter);
         }
 
@@ -353,7 +350,7 @@ class SelectorField extends BaseField {
      *
      * @since 1.0.0
      *
-     * @param  \File $file
+     * @param  \File  $file
      * @return string
      */
     public function itemId($file)
@@ -391,7 +388,7 @@ class SelectorField extends BaseField {
      *
      * @since  1.4.0
      *
-     * @param  string $string
+     * @param  string  $string
      * @return boolean
      */
     public function isRegExp($string)
