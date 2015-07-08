@@ -8,6 +8,7 @@ Selector = (function($, $field) {
     this.$items     = $field.find('.js-selector-item');
     this.mode       = $field.data('mode');
     this.autoselect = $field.data('autoselect');
+    this.size       = $field.data('size');
 
     /**
      * Initialize fileselect field
@@ -15,6 +16,16 @@ Selector = (function($, $field) {
      * @since 1.0.0
      */
     this.init = function() {
+
+        /**
+         * Initialize field size.
+         *
+         * @since 1.4.0
+         */
+        if(self.size != 'auto') {
+            self.initSize();
+        }
+
 
         /**
          * Initialize preselected items
@@ -38,6 +49,18 @@ Selector = (function($, $field) {
         if(self.autoselect != 'none') {
             self.doAutoSelect();
         }
+    };
+
+    this.initSize = function() {
+        // Calculate box height:
+        // (<visible items> * <item height>) + <visible item borders> + box borders
+        var height = self.size * self.$items.first().height() + (self.size - 1) + 4;
+
+        // Apply height and overflow styles to box
+        self.$field.find('.input-with-items').css({
+            maxHeight: height,
+            overflowY: 'scroll'
+        });
     };
 
     /**

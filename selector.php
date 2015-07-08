@@ -86,6 +86,14 @@ class SelectorField extends BaseField
     protected $filter = false;
 
     /**
+     * Selector size (number of visible items).
+     *
+     * @var string|integer
+     * @since 1.4.0
+     */
+    protected $size = 'auto';
+
+    /**
      * Option default values
      *
      * @var array
@@ -94,6 +102,7 @@ class SelectorField extends BaseField
     protected $defaultValues = array(
         'mode'    => 'single',
         'options' => 'all',
+        'size'    => 'auto',
     );
 
     /**
@@ -200,6 +209,11 @@ class SelectorField extends BaseField
                     $this->filter = false;
                 }
                 break;
+
+            case 'size':
+                if (!is_numeric($value)) {
+                    $this->size = $this->defaultValues['size'];
+                }
         }
     }
 
@@ -254,6 +268,7 @@ class SelectorField extends BaseField
             'page'       => $this->page(),
             'mode'       => $this->mode,
             'autoselect' => $this->autoselect(),
+            'size'       => $this->size,
         ));
         $wrapper->html(tpl::load(__DIR__ . DS . 'template.php', array('field' => $this)));
 
