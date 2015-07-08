@@ -71,8 +71,7 @@ When you're using the Selector field in Single Mode, gaining access to the full 
 
 ```php
 	// Convert the filename to a full file object
-	$filename = $page->yourselectorfield();
-	$file = $page->files()->find($filename);
+	$file = $page->yourselectorfield()->toFile();
 
 	// Use the file object
 	echo $file->url();
