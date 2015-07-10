@@ -2,11 +2,11 @@
 <input class="[ js-selector-storage ]" type="hidden" name="<?= $field->name() ?>" id="<?= $field->name() ?>" value="<?= implode(',', $field->value()) ?>" />
 
 <div class="input input-with-items">
-    <?php if($field->files()->count() > 0): ?>
-        <?php foreach($field->files() as $file): ?>
+    <?php if ($field->files()->count() > 0): ?>
+        <?php foreach ($field->files() as $file): ?>
             <div id="<?= $field->itemId($file) ?>" class="item item-with-image [ selector-item js-selector-item ]" data-file="<?= $file->filename() ?>" <?= r($field->isInValue($file), 'data-checked="true"') ?> >
                 <div class="item-content">
-                    <?php if($file->type() == 'image'): ?>
+                    <?php if ($file->type() == 'image'): ?>
                         <figure class="item-image">
                             <a class="item-image-container" href="<?= purl($file, 'show') ?>">
                                 <?= thumb($file, array('width' => 48, 'height' => 48, 'crop' => true)) ?>
@@ -27,7 +27,7 @@
                         </strong>
                         <small class="item-meta marginalia">
                             <?= $file->type() ?> / <?= $file->niceSize() ?>
-                            <?php if($file->type() == 'image'): ?>
+                            <?php if ($file->type() == 'image'): ?>
                                 / <?= $file->width() ?> x <?= $file->height() ?>
                             <?php endif ?>
                         </small>

@@ -18,7 +18,7 @@ This additional panel field for [Kirby 2](http://getkirby.com) allows you to use
 
 If not already existing, add a new `fields` folder to your `site` directory. Then copy or link this repositories whole content in a new `selector` folder there. Afterwards, your directory structure should look like this:
 
-```
+```yaml
 site/
 	fields/
 		selector/
@@ -50,7 +50,7 @@ $ git submodule foreach --recursive git pull
 
 As soon as you dropped the field extension into your fields folder you can use it in your blueprints: simply add `selector` fields to your blueprints and set some options (where applicable).
 
-```
+```yaml
 fields:
 	postimage:
 		label: Main Post Image
@@ -59,7 +59,7 @@ fields:
 		types:
 			- image
 ```
-```
+```yaml
 fields:
 	attachments:
 		label: Post Attachments
@@ -79,8 +79,7 @@ When you're using the Selector field in Single Mode, gaining access to the full 
 
 ```php
 	// Convert the filename to a full file object
-	$filename = $page->yourselectorfield();
-	$file = $page->files()->find($filename);
+	$file = $page->yourselectorfield()->toFile();
 
 	// Use the file object
 	echo $file->url();
@@ -121,7 +120,7 @@ Define a mode the field will work in. Possible values are `single` and `multiple
 
 Define the files types the file selector field shows. Possible values are `all`, `image`, `video`, `audio`, `document`, `archive`, `code`, `unknown`. You may specify as many of these types as you like.
 
-```
+```yaml
 fields:
 	attachments:
 		label: Post Attachments
@@ -138,7 +137,7 @@ fields:
 
 Files will be shown sorted by their filename in ascending order (a-z). However, this option let's you change the default sort behavior. You can sort files by filesize, dimensions, type and many more. Some of the countless possible values are `sort`, `filename`, `size`, `width`, `height`, `type`, `modified`, `ratio`. You can also sort by any of your custom [file fields](http://getkirby.com/docs/panel/blueprints/file-settings#file-fields). The value `sort` will make sure the files are presented in the exact order you specified in the panels file section via [drag and drop](http://getkirby.com/docs/panel/blueprints/file-settings#sortable-files).
 
-```
+```yaml
 fields:
 	featured:
 		label: Featured Image
@@ -157,7 +156,7 @@ This options allows you to reverse the sort order you specified with the `sort` 
 
 This options allows you to tell the Selector to auto select the first, last or all files of the list, if no other file is selected, yet. Possible values are `none` (default), `first`, `last` and `all`.
 
-```
+```yaml
 fields:
 	featured:
 		label:      Featured Image
@@ -171,15 +170,39 @@ fields:
 
 ### filter
 
-This options allows you to set a filename filter. Only files with filenames matching the filter will be shown in the Selector field. You may set this to any string like `background`, `.min.js` or `large`.
+This options allows you to set a filename filter. This can be either a simple string or a fully featured regular expression. Only files with filenames matching the filter string or regular expression will be shown in the Selector field. You may set this to any string like `background`, `.min.js` or `large` or a regular expression like `/\.((png)|(jpe?g))/i`.
 
-```
+```yaml
 fields:
 	featured:
-		label:      Page Background Image
-		type:       selector
-		mode:       single
-		filter:     background
+		label:  Page Background Image
+		type:   selector
+		mode:   single
+		filter: background
 		types:
 			- image
+```
+Showing only image files with the term *background* in their filename.
+
+```yaml
+fields:
+	featured:
+		label:  Page Background Image
+		type:   selector
+		mode:   single
+		filter: /\.((png)|(jpe?g))/i
+```
+Using a regular expression to show only *.jpg*, *.jpeg* and *.png* files.
+
+### size
+
+The `size` option lets you limit the height of the selector field and makes it scrollable. Only the specified number of files will be shown initially. This can be set either to a *number* or to `auto` (the Selector field will adapt to the height of the complete list of files).
+
+```yaml
+fields:
+	featured:
+		label: Page Background Image
+		type:  selector
+		mode:  single
+		size:  4
 ```

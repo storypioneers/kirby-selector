@@ -10,7 +10,7 @@ This additional panel field for [Kirby 2](http://getkirby.com) allows you to use
 
 If not already existing, add a new `fields` folder to your `site` directory. Then copy or link this repositories whole content in a new `selector` folder there. Afterwards, your directory structure should look like this:
 
-```yaml
+```
 site/
 	fields/
 		selector/
@@ -71,8 +71,7 @@ When you're using the Selector field in Single Mode, gaining access to the full 
 
 ```php
 	// Convert the filename to a full file object
-	$filename = $page->yourselectorfield();
-	$file = $page->files()->find($filename);
+	$file = $page->yourselectorfield()->toFile();
 
 	// Use the file object
 	echo $file->url();
@@ -163,15 +162,39 @@ fields:
 
 ### filter
 
-This options allows you to set a filename filter. Only files with filenames matching the filter will be shown in the Selector field. You may set this to any string like `background`, `.min.js` or `large`.
+This options allows you to set a filename filter. This can be either a simple string or a fully featured regular expression. Only files with filenames matching the filter string or regular expression will be shown in the Selector field. You may set this to any string like `background`, `.min.js` or `large` or a regular expression like `/\.((png)|(jpe?g))/i`.
 
 ```yaml
 fields:
 	featured:
-		label:      Page Background Image
-		type:       selector
-		mode:       single
-		filter:     background
+		label:  Page Background Image
+		type:   selector
+		mode:   single
+		filter: background
 		types:
 			- image
+```
+Showing only image files with the term *background* in their filename.
+
+```yaml
+fields:
+	featured:
+		label:  Page Background Image
+		type:   selector
+		mode:   single
+		filter: /\.((png)|(jpe?g))/i
+```
+Using a regular expression to show only *.jpg*, *.jpeg* and *.png* files.
+
+### size
+
+The `size` option lets you limit the height of the selector field and makes it scrollable. Only the specified number of files will be shown initially. This can be set either to a *number* or to `auto` (the Selector field will adapt to the height of the complete list of files).
+
+```yaml
+fields:
+	featured:
+		label: Page Background Image
+		type:  selector
+		mode:  single
+		size:  4
 ```

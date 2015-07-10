@@ -8,6 +8,7 @@ Selector = (function($, $field) {
     this.$items     = $field.find('.js-selector-item');
     this.mode       = $field.data('mode');
     this.autoselect = $field.data('autoselect');
+    this.size       = $field.data('size');
 
     /**
      * Initialize fileselect field
@@ -15,6 +16,16 @@ Selector = (function($, $field) {
      * @since 1.0.0
      */
     this.init = function() {
+
+        /**
+         * Initialize field size.
+         *
+         * @since 1.4.0
+         */
+        if(self.size != 'auto') {
+            self.initSize();
+        }
+
 
         /**
          * Initialize preselected items
@@ -40,6 +51,18 @@ Selector = (function($, $field) {
         }
     };
 
+    this.initSize = function() {
+        // Calculate box height:
+        // (<visible items> * <item height>) + <visible item borders> + box borders
+        var height = self.size * self.$items.first().height() + (self.size - 1) + 4;
+
+        // Apply height and overflow styles to box
+        self.$field.find('.input-with-items').css({
+            maxHeight: height,
+            overflowY: 'scroll'
+        });
+    };
+
     /**
      * Initialize items and set selected state for preselected items
      *
@@ -51,13 +74,13 @@ Selector = (function($, $field) {
         // Apply the selected state to all preselected items
         self.$items.each(function() {
             $item = $(this);
-            if($item.data('checked') == true)
+            if($item.data('checked') === true)
                 self.setSelectedState($item);
         });
 
         // Initialize storage element value
         self.updateStorage();
-    }
+    };
 
     /**
      * Maybe auto select an item
@@ -138,7 +161,7 @@ Selector = (function($, $field) {
 
         // Update storage element
         self.updateStorage();
-    }
+    };
 
     /**
      * Set all items into the unselected state
@@ -231,7 +254,7 @@ Selector = (function($, $field) {
 
         // Set string representation of the result as storage value
         self.$storage.val(files.join());
-    }
+    };
 
     return this.init();
 
