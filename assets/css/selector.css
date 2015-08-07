@@ -1,19 +1,6 @@
 
 .selector {}
 
-    .selector .selector-item.selector-item-selected {
-        background: #8dae28;
-    }
-    .selector .selector-item-selected a {
-    	color: white;
-    }
-    .selector .selector-item-selected small.item-meta {
-    	color: #B7CD65;
-    }
-    .selector .selector-item-selected .item-options .icon {
-    	color: white;
-    }
-
     .selector .item-filetype {
         background: #000;
 
@@ -42,6 +29,22 @@
 
         .selector .item-options .icon {
             padding: 0;
+        }
+
+    .selector .selector-item.selector-item-selected {
+        background: #8dae28;
+    }
+
+        .selector .selector-item.selector-item-selected a {
+        	color: white;
+        }
+
+        .selector .selector-item.selector-item-selected small.item-meta {
+        	color: #B7CD65;
+        }
+
+        .selector .selector-item.selector-item-selected .item-options .icon {
+        	color: white;
         }
 
 @media screen and (max-width: 50em) {
