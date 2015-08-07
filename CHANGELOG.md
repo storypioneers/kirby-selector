@@ -6,6 +6,10 @@
 
 * Improved styling for selected items
 
+**Additional:**
+
+* Added a list of all contributors
+
 ## Version 1.4.0
 
 **Features:**
