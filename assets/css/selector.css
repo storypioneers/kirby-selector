@@ -14,6 +14,19 @@
             color: #fff;
         }
 
+    .selector .selector-item {
+        border-top: 1px solid #efefef;
+        border-bottom: none;
+    }
+
+        .selector .selector-item:first-child {
+            border-top: none;
+        }
+
+    .selector .selector-item-selected + .selector-item-selected {
+        border-top-color: #b7cd65;
+    }
+
     .selector .selector-item-empty {
         padding: 1em;
         background: #ddd;
@@ -36,15 +49,15 @@
     }
 
         .selector .selector-item.selector-item-selected a {
-        	color: white;
+        	color: #fff;
         }
 
         .selector .selector-item.selector-item-selected small.item-meta {
-        	color: #B7CD65;
+        	color: #b7cd65;
         }
 
         .selector .selector-item.selector-item-selected .item-options .icon {
-        	color: white;
+        	color: #fff;
         }
 
 @media screen and (max-width: 50em) {
