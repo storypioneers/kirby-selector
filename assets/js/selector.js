@@ -58,6 +58,7 @@ Selector = (function($, $field) {
 
         // Apply height and overflow styles to box
         self.$field.find('.input-with-items').css({
+            minHeight: '3.25em',
             maxHeight: height,
             overflowY: 'scroll'
         });
