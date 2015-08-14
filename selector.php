@@ -4,7 +4,7 @@
  * Selector
  * Kirby Fileselect Field for Kirby 2
  *
- * @version   1.4.1
+ * @version   1.4.2
  * @author    Jonas Döbertin <hello@jd-powered.net>
  *            for digital storytelling pioneers <digital@storypioneers.com>
  * @copyright digital storytelling pioneers <digital@storypioneers.com>
@@ -334,7 +334,7 @@ class SelectorField extends BaseField
 
         $files = $files->sortBy($this->sort, ($this->flip) ? 'desc' : 'asc')
             ->filter(function ($file) use ($field) {
-                return $field->includeAllFiles() or in_array($file->type(), $field->types);
+                return $field->includeAllFiles() or in_array($file->type(), $field->types());
             });
 
         /**
@@ -409,5 +409,21 @@ class SelectorField extends BaseField
     public function isRegExp($string)
     {
         return !(@preg_match($string, null) === false);
+    }
+
+    /**
+     * Return type filter array.
+     *
+     * FIX: This function is required since we create a new variable containing
+     * a reference to `$this` to overcome the unavailability of `$this within
+     * closures in PHP < 5.4.0 by passing this new reference with the "use"
+     * language construct in the `files()` function.
+     *
+     * @since  1.4.2
+     * @return array
+     */
+    public function types()
+    {
+        return $this->types;
     }
 }
