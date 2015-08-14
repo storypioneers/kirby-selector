@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 1.4.2
+
+**Bugfixes:**
+
+* Fixed PHP 5.3 compatibility
+* Show "No matching files" message even if a max size is set
+
 ## Version 1.4.1
 
 **Changes:**
