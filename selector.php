@@ -4,7 +4,7 @@
  * Selector
  * Kirby Fileselect Field for Kirby 2
  *
- * @version   1.4.1
+ * @version   1.4.2
  * @author    Jonas Döbertin <hello@jd-powered.net>
  *            for digital storytelling pioneers <digital@storypioneers.com>
  * @copyright digital storytelling pioneers <digital@storypioneers.com>
@@ -419,7 +419,7 @@ class SelectorField extends BaseField
      * closures in PHP < 5.4.0 by passing this new reference with the "use"
      * language construct in the `files()` function.
      *
-     * @since 1.4.2
+     * @since  1.4.2
      * @return array
      */
     public function types()
