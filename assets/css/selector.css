@@ -1,83 +1,50 @@
 
 .selector {}
 
-    .selector .item-filetype {
-        background: #000;
 
+  .selector .item-image {
+    border-right: 1px solid #efefef;
+    background: #000;
+    display: inline-block;
+    text-align: center;
+    height: 100%;
+    line-height: 2.5em;
+    color: #fff;
+  }
+
+    .selector-item-selected {
+      color: #fff;
+      background: #8dae28;
     }
 
-        .selector .item-filetype a {
-            display: inline-block;
-            width: 48px;
-            text-align: center;
-            line-height: 48px;
-            color: #fff;
-        }
+      .selector-item-selected small.item-meta {
+        color: rgba(255,255,255,.7);
+      }
 
-    .selector .selector-item {
-        border-top: 1px solid #efefef;
-        border-bottom: none;
-    }
-
-        .selector .selector-item:first-child {
-            border-top: none;
-        }
-
-    .selector .selector-item-selected + .selector-item-selected {
-        border-top-color: #b7cd65;
-    }
-
-    .selector .selector-item-empty {
-        padding: 1em;
-        background: #ddd;
-    }
-
-    .selector .item-options {
-        background: none;
-    }
-
-        .selector .selector-item-selected .item-options {
-            border-left: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .selector .item-options .icon {
-            padding: 0;
-        }
-
-    .selector .selector-item.selector-item-selected {
+      .selector-item-selected a {
+        color: rgba(255,255,255,.7);
         background: #8dae28;
-    }
+      }
+      .selector-item-selected a:hover {
+        color: #fff;
+      }
 
-        .selector .selector-item.selector-item-selected a {
-        	color: #fff;
+        .selector-item-selected .icon {
+          color: #fff;
         }
 
-        .selector .selector-item.selector-item-selected small.item-meta {
-        	color: #b7cd65;
-        }
 
-        .selector .selector-item.selector-item-selected .item-options .icon {
-        	color: #fff;
-        }
 
-@media screen and (max-width: 50em) {
+/* panel fixes */
 
-    .selector .item-content {
-        border: 0;
-    }
+.selector .item-condensed.item-with-image .item-image {
+  width: 3.75em;
+  height: 3.75em;
+}
 
-    .selector .item-options {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        border: 0;
-        border-left: 1px solid #efefef;
-    }
-
-        .selector .item-options a {
-            line-height: 4.25em;
-            padding: 0 1.5em;
-        }
-
+@media screen and (min-width: 50em) {
+  .selector .item-condensed.item-with-image .item-image {
+    width: 2.5em;
+    height: 2.5em;
+  }
 }
