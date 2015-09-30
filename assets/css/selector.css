@@ -1,9 +1,21 @@
 
 .selector {}
 
+   .mainbar .form .selector .message {
+    margin-top: 0;
+  }
+    .mainbar .form .selector .message-content {
+      padding: .6em;
+      line-height: 1.6em;
+      color: #000;
+      background: #ddd;
+      cursor: default;
+    }
 
   .selector .item-image {
     border-right: 1px solid #efefef;
+  }
+  .selector .item-image a {
     background: #000;
     display: inline-block;
     text-align: center;
@@ -37,14 +49,36 @@
 
 /* panel fixes */
 
-.selector .item-condensed.item-with-image .item-image {
-  width: 3.75em;
-  height: 3.75em;
+
+
+.selector .item-image {
+  width: 3em;
+  height: 3em;
 }
 
+
+.selector .item-info {
+  height: 3em;
+  padding: .5em;
+}
+  .selector .item-info .fix {
+    position: absolute;
+    margin-left: -1.25em;
+  }
+    .selector .item-info .item-title {
+      margin-bottom: 0;
+    }
+
 @media screen and (min-width: 50em) {
-  .selector .item-condensed.item-with-image .item-image {
-    width: 2.5em;
-    height: 2.5em;
+  .selector .item-info .fix {
+    margin-left: 0;
+  }
+}
+@media screen and (min-width: 50em) and (max-width: 60em) {
+  .selector .item-options i {
+   padding: 0;
+  }
+  .selector .item-options span {
+    display: none;
   }
 }
