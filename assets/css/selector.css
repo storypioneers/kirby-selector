@@ -66,6 +66,11 @@
     position: absolute;
     margin-left: -1.25em;
   }
+    body.ltr .selector .item-title,
+    body.ltr .selector .item-meta {
+      float: none;
+      margin-bottom: 0;
+    }
     .selector .item-info .item-title {
       margin-bottom: 0;
     }
