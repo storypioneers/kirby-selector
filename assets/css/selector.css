@@ -40,7 +40,9 @@
             background: #8dae28;
         }
 
-            .selector-item-selected a:hover {
+            .selector-item-selected a:hover,
+            .selector-item-selected a:active,
+            .selector-item-selected a:focus {
                 color: #fff;
             }
 
