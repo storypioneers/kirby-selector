@@ -4,7 +4,7 @@
 
 This additional panel field for [Kirby 2](http://getkirby.com) allows you to use an intuitive alternative file selection field in your blueprints.
 
-**Authors**: [digital storytelling pioneers](https://github.com/storypioneers) feat. [Jonas Doebertin](https://bitbucket.org/JonasDoebertin)
+**Authors**: [digital storytelling pioneers](https://github.com/storypioneers) feat. [Jonas Doebertin](https://github.com/JonasDoebertin)
 
 **License**: [GNU GPL v3.0](http://opensource.org/licenses/GPL-3.0)
 
