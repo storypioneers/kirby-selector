@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Selector
+ * Selector.
+ * 
  * Fileselect Field for Kirby 2
  *
  * @version   1.5.0
@@ -11,7 +12,6 @@
  * @link      https://github.com/storypioneers/kirby-selector
  * @license   GNU GPL v3.0 <http://opensource.org/licenses/GPL-3.0>
  */
-
 class SelectorField extends BaseField
 {
     /**
@@ -88,7 +88,7 @@ class SelectorField extends BaseField
     /**
      * Selector size (number of visible items).
      *
-     * @var string|integer
+     * @var string|int
      * @since 1.4.0
      */
     protected $size = 'auto';
@@ -411,8 +411,8 @@ class SelectorField extends BaseField
      *
      * @since  1.4.0
      *
-     * @param  string  $string
-     * @return boolean
+     * @param  string $string
+     * @return bool
      */
     public function isRegExp($string)
     {

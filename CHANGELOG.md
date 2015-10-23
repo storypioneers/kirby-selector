@@ -6,7 +6,11 @@
 
 * Full Kirby 2.2 support
 * Context menus (Kirby 2.2+)
+
+**Changes:**
+
 * Better list item layout — now fully responsive
+* Better "No files found" message
 
 **Bugfixes:**
 

@@ -70,11 +70,11 @@
     </div>
 <?php else: ?>
     <div class="field field-is-readonly field-with-icon">
-      <div class="field-content">
-        <input class="input input-is-readonly" type="text" readonly="" placeholder="" value="<?= l::get('selector.empty') ?>">
-      <div class="field-icon">
-        <i class="icon fa fa-info"></i>
-      </div>
+        <div class="field-content">
+            <input class="input input-is-readonly" type="text" readonly placeholder="" value="<?= l::get('selector.empty', 'No matching files yet.') ?>">
+            <div class="field-icon">
+                <i class="icon fa fa-info"></i>
+            </div>
+        </div>
     </div>
-  </div>
 <?php endif ?>
