@@ -1,17 +1,5 @@
 .selector {}
 
-    .mainbar .form .selector .message {
-        margin-top: 0;
-    }
-
-        .mainbar .form .selector .message-content {
-            padding: .6em;
-            line-height: 1.6em;
-            color: #000;
-            background: #ddd;
-            cursor: default;
-        }
-
     .selector .item-image {
         border-right: 1px solid #efefef;
     }
