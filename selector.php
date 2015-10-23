@@ -230,7 +230,8 @@ class SelectorField extends BaseField
         $action = new Brick('a');
         $action->addClass('file-add-button label-option');
         $action->html('<i class="icon icon-left fa fa-plus-circle"></i>' . l('pages.show.files.add'));
-        $action->attr('href', purl($this->page(), 'upload'));
+        $action->attr('href', '#upload');
+        $action->data('upload', 'true');
 
         /* Label */
         $label = parent::label();
