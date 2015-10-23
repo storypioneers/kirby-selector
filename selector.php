@@ -2,9 +2,9 @@
 
 /**
  * Selector
- * Kirby Fileselect Field for Kirby 2
+ * Fileselect Field for Kirby 2
  *
- * @version   1.5
+ * @version   1.5.0
  * @author    digital storytelling pioneers <digital@storypioneers.com>
  * @author    feat. Jonas Döbertin <hello@jd-powered.net>
  * @copyright digital storytelling pioneers <digital@storypioneers.com>
@@ -15,7 +15,7 @@
 class SelectorField extends BaseField
 {
     /**
-     * Base directory for language files
+     * Base directory for language files.
      *
      * @var string
      * @since 1.2.0
@@ -23,7 +23,7 @@ class SelectorField extends BaseField
     const LANG_DIR = 'languages';
 
     /**
-     * Define frontend assets
+     * Define frontend assets.
      *
      * @var array
      * @since 1.0.0
@@ -38,7 +38,7 @@ class SelectorField extends BaseField
     );
 
     /**
-     * Select mode (single/multiple)
+     * Select mode (single/multiple).
      *
      * @var string
      * @since 1.0.0
@@ -46,7 +46,7 @@ class SelectorField extends BaseField
     protected $mode = 'single';
 
     /**
-     * Sort mode
+     * Sort mode.
      *
      * @var string
      * @since 1.1.0
@@ -54,7 +54,7 @@ class SelectorField extends BaseField
     protected $sort = 'filename';
 
     /**
-     * Flip sort order
+     * Flip sort order.
      *
      * @var string
      * @since 1.1.0
@@ -62,7 +62,7 @@ class SelectorField extends BaseField
     protected $flip = false;
 
     /**
-     * Covered file types
+     * Covered file types.
      *
      * @var array
      * @since 1.0.0
@@ -70,7 +70,7 @@ class SelectorField extends BaseField
     protected $types = array('all');
 
     /**
-     * Autoselect a file
+     * Autoselect a file.
      *
      * @var string
      * @since 1.2.0
@@ -78,7 +78,7 @@ class SelectorField extends BaseField
     protected $autoselect = 'none';
 
     /**
-     * Filename filter
+     * Filename filter.
      *
      * @var bool|string
      * @since 1.3.0
@@ -94,7 +94,7 @@ class SelectorField extends BaseField
     protected $size = 'auto';
 
     /**
-     * Option default values
+     * Option default values.
      *
      * @var array
      * @since 1.0.0
@@ -106,7 +106,7 @@ class SelectorField extends BaseField
     );
 
     /**
-     * Valid option values
+     * Valid option values.
      *
      * @var array
      * @since 1.0.0
@@ -135,9 +135,7 @@ class SelectorField extends BaseField
     );
 
     /**
-     * Field setup
-     *
-     * (1) Load language files
+     * Field setup.
      *
      * @since 1.2.0
      *
@@ -145,9 +143,7 @@ class SelectorField extends BaseField
      */
     public function __construct()
     {
-        /*
-            (1) Load language files
-         */
+        // Load language files
         $baseDir = __DIR__ . DS . self::LANG_DIR . DS;
         $lang    = panel()->language();
         if (file_exists($baseDir . $lang . '.php')) {
@@ -158,7 +154,7 @@ class SelectorField extends BaseField
     }
 
     /**
-     * Magic setter
+     * Magic setter.
      *
      * Set a fields property and apply default value if required.
      *
@@ -218,7 +214,7 @@ class SelectorField extends BaseField
     }
 
     /**
-     * Generate label markup
+     * Generate label markup.
      *
      * @since 1.0.0
      *
@@ -230,8 +226,19 @@ class SelectorField extends BaseField
         $action = new Brick('a');
         $action->addClass('file-add-button label-option');
         $action->html('<i class="icon icon-left fa fa-plus-circle"></i>' . l('pages.show.files.add'));
-        $action->attr('href', '#upload');
-        $action->data('upload', 'true');
+
+        /**
+         * FIX: With Kirby 2.2 the structure of the "Add file" actions changed.
+         * Let's make sure we handle both the old >2.1 and the new 2.2+ ways.
+         *
+         * @since 1.5.0
+         */
+        if (version_compare(Kirby::version(), '2.2', '>=')) {
+            $action->attr('href', '#upload');
+            $action->data('upload', 'true');
+        } else {
+            $action->attr('href', purl($this->page(), 'upload'));
+        }
 
         /* Label */
         $label = parent::label();
@@ -253,7 +260,7 @@ class SelectorField extends BaseField
     }
 
     /**
-     * Generate field content markup
+     * Generate field content markup.
      *
      * @since 1.0.0
      *
@@ -277,7 +284,7 @@ class SelectorField extends BaseField
     }
 
     /**
-     * Return the current value
+     * Return the current value.
      *
      * @since 1.0.0
      *
@@ -293,7 +300,7 @@ class SelectorField extends BaseField
     }
 
     /**
-     * Get files based on types option
+     * Get files based on types option.
      *
      * @since 1.0.0
      *
@@ -314,10 +321,10 @@ class SelectorField extends BaseField
          *
          * @since 1.3.0
          */
-        if (!is_null($this->page)) {/* (1) */
+        if (!is_null($this->page)) { /* (1) */
             $files = $this->page->files(); /* (1) */
-        } else {/* (2) */
-            if (version_compare(Kirby::version(), '2.1', '>=')) {/* (2.1) */
+        } else { /* (2) */
+            if (version_compare(Kirby::version(), '2.1', '>=')) { /* (2.1) */
                 $files = site()->files(); /* (2.1) */
             } else {
                 return new Collection(); /* (2.2) */
