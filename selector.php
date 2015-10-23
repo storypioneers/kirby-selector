@@ -244,7 +244,7 @@ class SelectorField extends BaseField
         $label = parent::label();
 
         /**
-         * Fields don't have to have a label assigned.
+         * FIX: Fields don't have to have a label assigned.
          * With this, we deal with missing label information.
          *
          * @since 1.3.0
@@ -369,7 +369,7 @@ class SelectorField extends BaseField
     }
 
     /**
-     * Generate file slug
+     * Generate file slug.
      *
      * @since 1.0.0
      *
@@ -382,7 +382,7 @@ class SelectorField extends BaseField
     }
 
     /**
-     * Check if a file is present in the current value
+     * Check if a file is present in the current value.
      *
      * @since 1.0.0
      *
@@ -395,7 +395,7 @@ class SelectorField extends BaseField
     }
 
     /**
-     * Check if the types array includes "all"
+     * Check if the types array includes "all".
      *
      * @since 1.0.0
      *
