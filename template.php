@@ -37,10 +37,17 @@
                 <nav class="item-options">
                     <ul class="nav nav-bar">
                         <li>
-                            <a class="btn btn-with-icon" href="<?= purl($file, 'show') ?>" title="<?= l('pages.show.subpages.edit') ?>">
-                                <i class="icon icon-left fa fa-pencil"></i>
-                                <span><?= l('pages.show.subpages.edit') ?></span>
-                            </a>
+                            <?php if (version_compare(Kirby::version(), '2.2', '>=')): ?>
+                                <a class="btn btn-with-icon" data-context="<?= purl($file, 'context') ?>" href="#options" title="<?= l('pages.show.subpages.edit') ?>">
+                                    <i class="icon icon-left fa fa-pencil"></i>
+                                    <span><?= l('pages.show.subpages.edit') ?></span>
+                                </a>
+                            <?php else: ?>
+                                <a class="btn btn-with-icon" href="<?= purl($file, 'show') ?>" title="<?= l('pages.show.subpages.edit') ?>">
+                                    <i class="icon icon-left fa fa-pencil"></i>
+                                    <span><?= l('pages.show.subpages.edit') ?></span>
+                                </a>
+                            <?php endif ?>                            
                         </li>
                         <li>
                             <a class="btn btn-with-icon [ selector-checkbox js-selector-checkbox ]" href="#" title="<?= l::get('selector.select') ?>">
