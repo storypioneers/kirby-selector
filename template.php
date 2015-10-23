@@ -8,9 +8,15 @@
                 <div class="item-content">
                     <?php if ($file->type() == 'image'): ?>
                         <figure class="item-image">
-                            <a class="btn btn-with-icon" href="<?= purl($file, 'show') ?>" title="<?= l('pages.show.subpages.edit') ?>">
-                                <?= thumb($file, array('width' => 48, 'height' => 48, 'crop' => true)) ?>
-                            </a>
+                            <?php if (version_compare(Kirby::version(), '2.2', '>=')): ?>
+                                <a class="btn btn-with-icon" data-context="<?= purl($file, 'context') ?>" href="#options" title="<?= l('pages.show.subpages.edit') ?>">
+                                    <?= thumb($file, array('width' => 48, 'height' => 48, 'crop' => true)) ?>
+                                </a>
+                            <?php else: ?>
+                                <a class="btn btn-with-icon" href="<?= purl($file, 'show') ?>" title="<?= l('pages.show.subpages.edit') ?>">
+                                    <?= thumb($file, array('width' => 48, 'height' => 48, 'crop' => true)) ?>
+                                </a>
+                            <?php endif ?>
                         </figure>
                     <?php else: ?>
                         <figure class="item-image item-filetype">
@@ -47,7 +53,7 @@
                                     <i class="icon icon-left fa fa-pencil"></i>
                                     <span><?= l('pages.show.subpages.edit') ?></span>
                                 </a>
-                            <?php endif ?>                            
+                            <?php endif ?>
                         </li>
                         <li>
                             <a class="btn btn-with-icon [ selector-checkbox js-selector-checkbox ]" href="#" title="<?= l::get('selector.select') ?>">
