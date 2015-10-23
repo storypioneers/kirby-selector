@@ -1,5 +1,17 @@
 # Changelog
 
+## Version 1.5.0
+
+**Features:**
+
+* Full Kirby 2.2 support
+* Context menus (Kirby 2.2+)
+* Better list item layout — now fully responsive
+
+**Bugfixes:**
+
+* Don't show empty (0x0) dimensions for svg images
+
 ## Version 1.4.2
 
 **Bugfixes:**
