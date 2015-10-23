@@ -1,12 +1,10 @@
 # Selector – Kirby Fileselect Field
 
-[![Release](https://img.shields.io/github/release/storypioneers/kirby-selector.svg)](https://github.com/storypioneers/kirby-selector/releases)  [![Issues](https://img.shields.io/github/issues/storypioneers/kirby-selector.svg)](https://github.com/storypioneers/kirby-selector/issues) [![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://raw.githubusercontent.com/storypioneers/kirby-selector/master/LICENSE)
+[![Release](https://img.shields.io/github/release/storypioneers/kirby-selector.svg?style=flat-square)](https://github.com/storypioneers/kirby-selector/releases)  [![Issues](https://img.shields.io/github/issues/storypioneers/kirby-selector.svg?style=flat-square)](https://github.com/storypioneers/kirby-selector/issues) [![License](https://img.shields.io/github/license/storypioneers/kirby-selector.svg?style=flat-square)](https://raw.githubusercontent.com/storypioneers/kirby-selector/master/LICENSE)
 
 This additional panel field for [Kirby 2](http://getkirby.com) allows you to use an intuitive alternative file selection field in your blueprints.
 
-**Concept**: [@storypioneers](https://github.com/storypioneers)
-
-**Authors**: [@JonasDoebertin](https://github.com/JonasDoebertin/) for [@storypioneers](https://github.com/storypioneers)
+**Authors**: [digital storytelling pioneers](https://github.com/storypioneers) feat. [Jonas Doebertin](https://github.com/JonasDoebertin)
 
 **License**: [GNU GPL v3.0](http://opensource.org/licenses/GPL-3.0)
 
@@ -34,6 +32,17 @@ If you are an advanced user and know your way around Git and you already use Git
 ```bash
 $ cd your/project/root
 $ git submodule add https://github.com/storypioneers/kirby-selector.git site/fields/selector
+```
+
+To Update your Selector field submodule to the latest available release follow these steps:
+
+```bash
+$ cd your/project/root
+$ cd site/fields/selector
+$ git checkout master
+$ git pull
+$ cd ../../../
+$ git commit -a -m "Update Selector submodule"
 ```
 
 Updating all your Git submodules (eg. the Kirby core modules and any extensions added as submodules) to their latest version, all you need to do is to run these few Git commands:

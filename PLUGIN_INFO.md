@@ -1,6 +1,8 @@
 This additional panel field for [Kirby 2](http://getkirby.com) allows you to use an intuitive alternative file selection field in your blueprints.
 
-**Concept**: [@storypioneers](https://github.com/storypioneers) · **Authors**: [@JonasDoebertin](https://github.com/JonasDoebertin/) for [@storypioneers](https://github.com/storypioneers) · **License**: [GNU GPL v3.0](http://opensource.org/licenses/GPL-3.0)
+**Authors**: [digital storytelling pioneers](https://github.com/storypioneers) feat. [Jonas Doebertin](https://github.com/JonasDoebertin)
+
+**License**: [GNU GPL v3.0](http://opensource.org/licenses/GPL-3.0)
 
 ![Screenshot](https://raw.githubusercontent.com/storypioneers/kirby-selector/master/screenshot.jpg)
 
@@ -10,7 +12,7 @@ This additional panel field for [Kirby 2](http://getkirby.com) allows you to use
 
 If not already existing, add a new `fields` folder to your `site` directory. Then copy or link this repositories whole content in a new `selector` folder there. Afterwards, your directory structure should look like this:
 
-```
+```yaml
 site/
 	fields/
 		selector/

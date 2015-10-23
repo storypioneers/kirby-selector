@@ -1,5 +1,28 @@
 # Changelog
 
+## Version 1.5.0
+
+**Features:**
+
+* Full Kirby 2.2 support
+* Context menus (Kirby 2.2+)
+
+**Changes:**
+
+* Better list item layout — now fully responsive
+* Better "No files found" message
+
+**Bugfixes:**
+
+* Don't show empty (0x0) dimensions for svg images
+
+## Version 1.4.2
+
+**Bugfixes:**
+
+* Fixed PHP 5.3 compatibility
+* Show "No matching files" message even if a max size is set
+
 ## Version 1.4.1
 
 **Changes:**

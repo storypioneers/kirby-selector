@@ -1,52 +1,80 @@
-
 <input class="[ js-selector-storage ]" type="hidden" name="<?= $field->name() ?>" id="<?= $field->name() ?>" value="<?= implode(',', $field->value()) ?>" />
 
-<div class="input input-with-items">
-    <?php if ($field->files()->count() > 0): ?>
+<?php if ($field->files()->count() > 0): ?>
+    <div class="input input-with-items">
+
         <?php foreach ($field->files() as $file): ?>
             <div id="<?= $field->itemId($file) ?>" class="item item-with-image [ selector-item js-selector-item ]" data-file="<?= $file->filename() ?>" <?= r($field->isInValue($file), 'data-checked="true"') ?> >
                 <div class="item-content">
                     <?php if ($file->type() == 'image'): ?>
                         <figure class="item-image">
-                            <a class="item-image-container" href="<?= purl($file, 'show') ?>">
-                                <?= thumb($file, array('width' => 48, 'height' => 48, 'crop' => true)) ?>
-                            </a>
+                            <?php if (version_compare(Kirby::version(), '2.2', '>=')): ?>
+                                <a class="btn btn-with-icon" data-context="<?= purl($file, 'context') ?>" href="#options" title="<?= l('pages.show.subpages.edit') ?>">
+                                    <?= thumb($file, array('width' => 48, 'height' => 48, 'crop' => true)) ?>
+                                </a>
+                            <?php else: ?>
+                                <a class="btn btn-with-icon" href="<?= purl($file, 'show') ?>" title="<?= l('pages.show.subpages.edit') ?>">
+                                    <?= thumb($file, array('width' => 48, 'height' => 48, 'crop' => true)) ?>
+                                </a>
+                            <?php endif ?>
                         </figure>
                     <?php else: ?>
-                        <figure class="item-image  item-filetype">
-                            <a class="item-image-container" href="<?= purl($file, 'show') ?>">
+                        <figure class="item-image item-filetype">
+                            <a class="btn btn-with-icon" href="<?= purl($file, 'show') ?>" title="<?= l('pages.show.subpages.edit') ?>">
                                 <?= strtoupper($file->extension()) ?>
                             </a>
                         </figure>
                     <?php endif ?>
                     <div class="item-info">
-                        <strong class="item-title">
-                            <a href="<?= purl($file, 'show') ?>">
+                        <div class="fix">
+                            <strong class="item-title">
                                 <?= $file->filename() ?>
-                            </a>
-                        </strong>
-                        <small class="item-meta marginalia">
-                            <?= $file->type() ?> / <?= $file->niceSize() ?>
-                            <?php if ($file->type() == 'image'): ?>
-                                / <?= $file->width() ?> x <?= $file->height() ?>
-                            <?php endif ?>
-                        </small>
+                            </strong>
+                            <small class="item-meta marginalia">
+                                <?= $file->type() ?> / <?= $file->niceSize() ?>
+                                <?php if (($file->type() == 'image') and ($file->extension() != 'svg')): ?>
+                                    / <?= $file->width() ?> x <?= $file->height() ?>
+                                <?php endif ?>
+                            </small>
+                        </div>
                     </div>
                 </div>
+
                 <nav class="item-options">
                     <ul class="nav nav-bar">
                         <li>
-                            <a class="btn btn-with-icon [ selector-checkbox js-selector-checkbox ]" href="">
+                            <?php if (version_compare(Kirby::version(), '2.2', '>=')): ?>
+                                <a class="btn btn-with-icon" data-context="<?= purl($file, 'context') ?>" href="#options" title="<?= l('pages.show.subpages.edit') ?>">
+                                    <i class="icon icon-left fa fa-pencil"></i>
+                                    <span><?= l('pages.show.subpages.edit') ?></span>
+                                </a>
+                            <?php else: ?>
+                                <a class="btn btn-with-icon" href="<?= purl($file, 'show') ?>" title="<?= l('pages.show.subpages.edit') ?>">
+                                    <i class="icon icon-left fa fa-pencil"></i>
+                                    <span><?= l('pages.show.subpages.edit') ?></span>
+                                </a>
+                            <?php endif ?>
+                        </li>
+                        <li>
+                            <a class="btn btn-with-icon [ selector-checkbox js-selector-checkbox ]" href="#" title="<?= l::get('selector.select') ?>">
                                 <i class="icon icon-left fa fa-circle-o"></i>
+                                <span><?= l::get('selector.select') ?></span>
                             </a>
                         </li>
                     </ul>
                 </nav>
+
             </div>
         <?php endforeach ?>
-    <?php else: ?>
-        <div class="item selector-item-empty">
-            <?php echo l::get('selector.empty') ?>
+
+    </div>
+<?php else: ?>
+    <div class="field field-is-readonly field-with-icon">
+        <div class="field-content">
+            <input class="input input-is-readonly" type="text" readonly placeholder="" value="<?= l::get('selector.empty', 'No matching files yet.') ?>">
+            <div class="field-icon">
+                <i class="icon fa fa-info"></i>
+            </div>
         </div>
-    <?php endif ?>
-</div>
+    </div>
+<?php endif ?>

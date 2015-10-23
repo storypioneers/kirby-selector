@@ -186,7 +186,7 @@ Selector = (function($, $field) {
     this.setUnselectedState = function($target) {
         $target.data('checked', 'false')
                .removeClass('selector-item-selected')
-               .find('.icon')
+               .find('.fa-check-circle')
                    .removeClass('fa-check-circle')
                    .addClass('fa-circle-o');
     };
@@ -201,7 +201,7 @@ Selector = (function($, $field) {
     this.setSelectedState = function($target) {
         $target.data('checked', 'true')
                .addClass('selector-item-selected')
-               .find('.icon')
+               .find('.fa-circle-o')
                    .removeClass('fa-circle-o')
                    .addClass('fa-check-circle');
     };
