@@ -26,7 +26,7 @@
                             </strong>
                             <small class="item-meta marginalia">
                                 <?= $file->type() ?> / <?= $file->niceSize() ?>
-                                <?php if ($file->type() == 'image'): ?>
+                                <?php if (($file->type() == 'image') and ($file->extension() != 'svg')): ?>
                                     / <?= $file->width() ?> x <?= $file->height() ?>
                                 <?php endif ?>
                             </small>
