@@ -8,7 +8,7 @@
                 <div class="item-content">
                     <?php if ($file->type() == 'image'): ?>
                         <figure class="item-image">
-                            <?php if (version_compare(Kirby::version(), '2.2', '>=')): ?>
+                            <?php if (version_compare(panel()->version(), '2.2', '>=')): ?>
                                 <a class="btn btn-with-icon" data-context="<?= purl($file, 'context') ?>" href="#options" title="<?= l('pages.show.subpages.edit') ?>">
                                     <?= thumb($file, array('width' => 48, 'height' => 48, 'crop' => true)) ?>
                                 </a>
@@ -43,7 +43,7 @@
                 <nav class="item-options">
                     <ul class="nav nav-bar">
                         <li>
-                            <?php if (version_compare(Kirby::version(), '2.2', '>=')): ?>
+                            <?php if (version_compare(panel()->version(), '2.2', '>=')): ?>
                                 <a class="btn btn-with-icon" data-context="<?= purl($file, 'context') ?>" href="#options" title="<?= l('pages.show.subpages.edit') ?>">
                                     <i class="icon icon-left fa fa-pencil"></i>
                                     <span><?= l('pages.show.subpages.edit') ?></span>
