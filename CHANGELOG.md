@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.5.1
+
+**Bugfixes:**
+
+* More compatible way of getting the current panel language
+
 ## Version 1.5.0
 
 **Features:**

@@ -2,10 +2,10 @@
 
 /**
  * Selector.
- * 
+ *
  * Fileselect Field for Kirby 2
  *
- * @version   1.5.0
+ * @version   1.5.1
  * @author    digital storytelling pioneers <digital@storypioneers.com>
  * @author    feat. Jonas Döbertin <hello@jd-powered.net>
  * @copyright digital storytelling pioneers <digital@storypioneers.com>
@@ -143,9 +143,17 @@ class SelectorField extends BaseField
      */
     public function __construct()
     {
-        // Load language files
+        // Build translation file path
         $baseDir = __DIR__ . DS . self::LANG_DIR . DS;
-        $lang    = panel()->language();
+
+        // Get panel language
+        if (version_compare(panel()->version(), '2.2', '>=')) {
+            $lang = panel()->translation()->code();
+        } else {
+            $lang = panel()->language();
+        }
+
+        // Load language files
         if (file_exists($baseDir . $lang . '.php')) {
             require $baseDir . $lang . '.php';
         } else {
