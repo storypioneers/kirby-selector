@@ -1,18 +1,23 @@
 .selector {}
+  .selector .input-with-items {
+    max-height: 15.5em;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 
     .selector .item-image {
         border-right: 1px solid #efefef;
     }
 
-        .selector .item-image a {
-            background: #000;
-            display: inline-block;
-            text-align: center;
-            height: 100%;
-            width: 100%;
-            line-height: 3em;
-            color: #fff;
-        }
+      .selector .item-image a {
+          background: #000;
+          display: inline-block;
+          text-align: center;
+          height: 100%;
+          width: 100%;
+          line-height: 3em;
+          color: #fff;
+      }
 
     .selector-item-selected {
         color: #fff;
