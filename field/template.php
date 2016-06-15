@@ -9,9 +9,13 @@
                     <?php if ($file->type() == 'image'): ?>
                         <figure class="item-image">
                             <?php if (version_compare(panel()->version(), '2.2', '>=')): ?>
-                                <a class="btn btn-with-icon" data-context="<?= purl($file, 'context') ?>" href="#options" title="<?= l('pages.show.subpages.edit') ?>">
+                                <?php if ($field->editable()): ?>
+                                    <a class="btn btn-with-icon" data-context="<?= purl($file, 'context') ?>" href="#options" title="<?= l('pages.show.subpages.edit') ?>">
+                                        <?= thumb($file, array('width' => 48, 'height' => 48, 'crop' => true)) ?>
+                                    </a>
+                                <?php else: ?>
                                     <?= thumb($file, array('width' => 48, 'height' => 48, 'crop' => true)) ?>
-                                </a>
+                                <?php endif ?>
                             <?php else: ?>
                                 <a class="btn btn-with-icon" href="<?= purl($file, 'show') ?>" title="<?= l('pages.show.subpages.edit') ?>">
                                     <?= thumb($file, array('width' => 48, 'height' => 48, 'crop' => true)) ?>
@@ -20,9 +24,13 @@
                         </figure>
                     <?php else: ?>
                         <figure class="item-image item-filetype">
-                            <a class="btn btn-with-icon" href="<?= purl($file, 'show') ?>" title="<?= l('pages.show.subpages.edit') ?>">
+                            <?php if ($field->editable()): ?>
+                                <a class="btn btn-with-icon" data-context="<?= purl($file, 'context') ?>" href="#options" title="<?= l('pages.show.subpages.edit') ?>">
+                                    <?= strtoupper($file->extension()) ?>
+                                </a>
+                            <?php else: ?>
                                 <?= strtoupper($file->extension()) ?>
-                            </a>
+                            <?php endif ?>
                         </figure>
                     <?php endif ?>
                     <div class="item-info">
@@ -42,19 +50,21 @@
 
                 <nav class="item-options">
                     <ul class="nav nav-bar">
-                        <li>
-                            <?php if (version_compare(panel()->version(), '2.2', '>=')): ?>
-                                <a class="btn btn-with-icon" data-context="<?= purl($file, 'context') ?>" href="#options" title="<?= l('pages.show.subpages.edit') ?>">
-                                    <i class="icon icon-left fa fa-pencil"></i>
-                                    <span><?= l('pages.show.subpages.edit') ?></span>
-                                </a>
-                            <?php else: ?>
-                                <a class="btn btn-with-icon" href="<?= purl($file, 'show') ?>" title="<?= l('pages.show.subpages.edit') ?>">
-                                    <i class="icon icon-left fa fa-pencil"></i>
-                                    <span><?= l('pages.show.subpages.edit') ?></span>
-                                </a>
-                            <?php endif ?>
-                        </li>
+                        <?php if ($field->editable()): ?>
+                            <li>
+                                <?php if (version_compare(panel()->version(), '2.2', '>=')): ?>
+                                    <a class="btn btn-with-icon" data-context="<?= purl($file, 'context') ?>" href="#options" title="<?= l('pages.show.subpages.edit') ?>">
+                                        <i class="icon icon-left fa fa-pencil"></i>
+                                        <span><?= l('pages.show.subpages.edit') ?></span>
+                                    </a>
+                                <?php else: ?>
+                                    <a class="btn btn-with-icon" href="<?= purl($file, 'show') ?>" title="<?= l('pages.show.subpages.edit') ?>">
+                                        <i class="icon icon-left fa fa-pencil"></i>
+                                        <span><?= l('pages.show.subpages.edit') ?></span>
+                                    </a>
+                                <?php endif ?>
+                            </li>
+                        <?php endif ?>
                         <li>
                             <a class="btn btn-with-icon [ selector-checkbox js-selector-checkbox ]" href="#" title="<?= l::get('selector.select') ?>">
                                 <i class="icon icon-left fa fa-circle-o"></i>
