@@ -1,0 +1,8 @@
+{
+    "name": "field-selector",
+    "version": "2.3.0",
+    "description": "Kirby File Selector Panel Plugin",
+    "author": "Jonas Döbertin",
+    "license": "GPL v3",
+    "type": "kirby-plugin"
+}

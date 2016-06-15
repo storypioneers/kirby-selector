@@ -12,9 +12,15 @@ This additional panel field for [Kirby 2](http://getkirby.com) allows you to use
 
 ## Installation
 
-### Copy & Pasting
+### Kirby CLI
 
-If not already existing, add a new `fields` folder to your `site` directory. Then copy or link this repositories whole content in a new `selector` folder there. Afterwards, your directory structure should look like this:
+**Recommended**: Install the plugin via [Kirby CLI](https://github.com/getkirby/cli)  
+``kirby plugin:install storypioneers/kirby-selector``
+
+
+### Copy & Paste
+
+If not already existing, add a new `fields` folder to your `site` directory. Then copy the content of this repository's `field` folder to a new `selector` folder there. Afterwards, your directory structure should look like this:
 
 ```yaml
 site/
