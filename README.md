@@ -223,3 +223,16 @@ fields:
 		mode:  single
 		size:  4
 ```
+
+### editable
+
+This option will hide all elements for modifying the files in the select field. With this set to `false` all you can do is select files. Default is `true`.
+
+```yaml
+fields:
+	featured:
+		label: Page Background Image
+		type:  selector
+		mode:  single
+		editable:  false
+```
