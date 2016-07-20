@@ -1,17 +1,5 @@
 <?php
 
-/**
- * Selector.
- *
- * Fileselect Field for Kirby 2
- *
- * @version   1.5.1
- * @author    digital storytelling pioneers <digital@storypioneers.com>
- * @author    feat. Jonas Döbertin <hello@jd-powered.net>
- * @copyright digital storytelling pioneers <digital@storypioneers.com>
- * @link      https://github.com/storypioneers/kirby-selector
- * @license   GNU GPL v3.0 <http://opensource.org/licenses/GPL-3.0>
- */
 class SelectorField extends BaseField
 {
     /**
@@ -92,6 +80,14 @@ class SelectorField extends BaseField
      * @since 1.4.0
      */
     protected $size = 'auto';
+
+    /**
+     * Selector size (number of visible items).
+     *
+     * @var string|int
+     * @since 1.4.0
+     */
+    protected $editable = true;
 
     /**
      * Option default values.
@@ -218,6 +214,13 @@ class SelectorField extends BaseField
                 if (!is_numeric($value)) {
                     $this->size = $this->defaultValues['size'];
                 }
+                break;
+
+            case 'editable':
+                if (!is_bool($value)) {
+                    $this->size = $this->defaultValues['editable'];
+                }
+                break;
         }
     }
 
@@ -259,7 +262,11 @@ class SelectorField extends BaseField
          */
         if (!is_null($label)) {
             $label->addClass('figure-label');
-            $label->append($action);
+
+            // add upload load link if field is editable
+            if($this->editable) {
+                $label->append($action);
+            }
 
             return $label;
         }
@@ -285,6 +292,7 @@ class SelectorField extends BaseField
             'mode'       => $this->mode,
             'autoselect' => $this->autoselect(),
             'size'       => $this->size,
+            'editable'   => $this->editable,
         ));
         $wrapper->html(tpl::load(__DIR__ . DS . 'template.php', array('field' => $this)));
 

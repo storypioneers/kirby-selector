@@ -1,59 +1,17 @@
 # Selector – Kirby Fileselect Field
 
-[![Release](https://img.shields.io/github/release/storypioneers/kirby-selector.svg?style=flat-square)](https://github.com/storypioneers/kirby-selector/releases)  [![Issues](https://img.shields.io/github/issues/storypioneers/kirby-selector.svg?style=flat-square)](https://github.com/storypioneers/kirby-selector/issues) [![License](https://img.shields.io/github/license/storypioneers/kirby-selector.svg?style=flat-square)](https://raw.githubusercontent.com/storypioneers/kirby-selector/master/LICENSE)
-
 This additional panel field for [Kirby 2](http://getkirby.com) allows you to use an intuitive alternative file selection field in your blueprints.
 
 **Authors**: [digital storytelling pioneers](https://github.com/storypioneers) feat. [Jonas Doebertin](https://github.com/JonasDoebertin)
 
 **License**: [GNU GPL v3.0](http://opensource.org/licenses/GPL-3.0)
 
-![Screenshot](https://raw.githubusercontent.com/storypioneers/kirby-selector/master/screenshot.jpg)
+![Screenshot](https://raw.githubusercontent.com/storypioneers/kirby-selector/master/screenshot.png)
 
 ## Installation
 
-### Copy & Pasting
+Copy or link the `selector` directory to `site/plugins/` **or** use the [Kirby CLI](https://github.com/getkirby/cli) `kirby plugin:install storypioneers/kirby-selector`.
 
-If not already existing, add a new `fields` folder to your `site` directory. Then copy or link this repositories whole content in a new `selector` folder there. Afterwards, your directory structure should look like this:
-
-```yaml
-site/
-	fields/
-		selector/
-			assests/
-			selector.php
-			template.php
-```
-
-### Git Submodule
-
-If you are an advanced user and know your way around Git and you already use Git to manage you project, you can make updating this field extension to newer releases a breeze by adding it as a Git submodule.
-
-```bash
-$ cd your/project/root
-$ git submodule add https://github.com/storypioneers/kirby-selector.git site/fields/selector
-```
-
-To Update your Selector field submodule to the latest available release follow these steps:
-
-```bash
-$ cd your/project/root
-$ cd site/fields/selector
-$ git checkout master
-$ git pull
-$ cd ../../../
-$ git commit -a -m "Update Selector submodule"
-```
-
-Updating all your Git submodules (eg. the Kirby core modules and any extensions added as submodules) to their latest version, all you need to do is to run these few Git commands:
-
-```bash
-$ cd your/project/root
-$ git submodule foreach git checkout master
-$ git submodule foreach git pull
-$ git commit -a -m "Update submodules"
-$ git submodule update --init --recursive
-```
 
 ## Usage
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 1.5.2
+
+**Features:**
+
+* Kirby CLI support
+
+
 ## Version 1.5.1
 
 **Bugfixes:**

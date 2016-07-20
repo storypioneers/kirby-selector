@@ -1,0 +1,12 @@
+{
+  "name": "field-selector",
+  "description": "Kirby file selection field",
+  "author": "digital storytelling pioneers <https://github.com/storypioneers>",
+  "version": "1.5.2",
+  "type": "kirby-plugin",
+  "license": "GNU GPL v3.0 <http://opensource.org/licenses/GPL-3.0>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/storypioneers/kirby-selector"
+  }
+}
