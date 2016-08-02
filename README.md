@@ -17,7 +17,7 @@ Copy or link the `selector` directory to `site/plugins/` **or** use the [Kirby C
 
 ### Within your blueprints
 
-As soon as you dropped the field extension into your fields folder you can use it in your blueprints: simply add `selector` fields to your blueprints and set some options (where applicable).
+Post installation simply add `selector` fields to your blueprints and set some options (where applicable).
 
 ```yaml
 fields:
