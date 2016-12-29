@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.6.0
+
+**Features:**
+
+* Kirby 2.4 support
+
 ## Version 1.5.2
 
 **Features:**
