@@ -56,17 +56,11 @@ When you're using the Selector field in Single Mode, gaining access to the full 
 
 **Multiple Mode**
 
-In multiple mode, the Selector field stores a comma-separated list of filenames, based on how many files you selected. To convert this list into a fully-featured file collection (just like `$page->files()`), you need a bit more code.
+In multiple mode, the Selector field stores a comma-separated list of filenames, based on how many files you selected. To convert this list into a fully-featured file collection (just like `$page->files()`), you just need the field method `toFiles` that comes with the plugin.
 
 ```php
-
-	// Transform the comma-separated list of filenames into a file collection
-	$filenames = $page->yourselectorfield()->split(',');
-	if(count($filenames) < 2) $filenames = array_pad($filenames, 2, '');
-	$files = call_user_func_array(array($page->files(), 'find'), $filenames);
-
-	// Use the file collection
-	foreach($files as $file)
+	// Fetch the Files collection from the field value and use it like you would $page->files()
+	foreach($page->yourselectorfield()->toFiles() as $file)
 	{
 		echo $file->url();
 	}

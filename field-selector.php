@@ -14,3 +14,13 @@
 
 // register the builder field
 $kirby->set('field', 'selector', __DIR__ . DS . 'field');
+
+
+field::$methods['toFiles'] = function ($field) {
+    // Transform the comma-separated list of filenames into a file collection
+    $fileNames = $field->split(',');
+    // find method has special handling for finding a single file, pad file names with empty string to force it
+    // to return a Files collection
+    $fileNames = array_pad($fileNames, 2, '');
+    return $field->page()->files()->find($fileNames);
+};
