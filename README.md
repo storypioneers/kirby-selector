@@ -137,6 +137,22 @@ fields:
 			- image
 ```
 
+### autoselectadd
+
+This options allows you to tell the Selector to auto select a file if the upload is initiated by clicking on the field-related _Add_ button.
+
+```yaml
+fields:
+	featured:
+		label:         Featured Image
+		type:          selector
+		mode:          single
+		sort:          filename
+		autoselectadd: true
+		types:
+			- image
+```
+
 ### filter
 
 This options allows you to set a filename filter. This can be either a simple string or a fully featured regular expression. Only files with filenames matching the filter string or regular expression will be shown in the Selector field. You may set this to any string like `background`, `.min.js` or `large` or a regular expression like `/\.((png)|(jpe?g))/i`.

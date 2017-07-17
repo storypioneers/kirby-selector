@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.6.0
+
+**Features:**
+
+* Add support for auto selection after uploding a file using the field specific _Add_ button
+
 ## Version 1.5.2
 
 **Features:**
