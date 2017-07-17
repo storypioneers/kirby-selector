@@ -66,6 +66,14 @@ class SelectorField extends BaseField
     protected $autoselect = 'none';
 
     /**
+     * Autoselect a file after use the field specific add button.
+     *
+     * @var string
+     * @since 1.6.0
+     */
+    protected $autoselectadd = 'none';
+
+    /**
      * Filename filter.
      *
      * @var bool|string
@@ -127,6 +135,10 @@ class SelectorField extends BaseField
             'first',
             'last',
             'all',
+        ),
+        'autoselectadd' => array(
+            'none',
+            'true',
         ),
     );
 
@@ -201,6 +213,12 @@ class SelectorField extends BaseField
             case 'autoselect':
                 if (!in_array($value, $this->validValues['autoselect'])) {
                     $this->autoselect = 'none';
+                }
+                break;
+
+            case 'autoselectadd':
+                if (!in_array($value, $this->validValues['autoselectadd'])) {
+                    $this->autoselectadd = 'none';
                 }
                 break;
 
@@ -286,13 +304,14 @@ class SelectorField extends BaseField
         $wrapper = new Brick('div');
         $wrapper->addClass('selector');
         $wrapper->data(array(
-            'field'      => 'selector',
-            'name'       => $this->name(),
-            'page'       => $this->page(),
-            'mode'       => $this->mode,
-            'autoselect' => $this->autoselect(),
-            'size'       => $this->size,
-            'editable'   => $this->editable,
+            'field'         => 'selector',
+            'name'          => $this->name(),
+            'page'          => $this->page(),
+            'mode'          => $this->mode,
+            'autoselect'    => $this->autoselect(),
+            'autoselectadd' => $this->autoselectadd(),
+            'size'          => $this->size,
+            'editable'      => $this->editable,
         ));
         $wrapper->html(tpl::load(__DIR__ . DS . 'template.php', array('field' => $this)));
 
